@@ -72,3 +72,10 @@
   display: flex;
   margin-top: 10px;
 }
+
+.login-error {
+  font-size: 14px !important;
+  background-color: var(--mat-form-field-error-text-color);
+  color: black;
+  padding: 5px 5px 5px 5px;
+}

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { LoginService } from '../shared/login.service';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -13,14 +14,34 @@ import { MatInputModule } from '@angular/material/input';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  username: string = "";
-  password: string = "";
+  email: string = "";
+    password: string = "";
+    error: string = ""; 
+    emailFormControl: FormControl;
+    passwordFormControl: FormControl;
+  
+  
+  
+    constructor(private loginService: LoginService) {
+      this.emailFormControl = new FormControl('', [Validators.required]);
+      this.passwordFormControl = new FormControl('', [Validators.required]);
+    }
+    
+    onInputChange(): void {
+      this.error = '';
+    }
 
-  constructor() { }
-
-  onSubmit() {
-    // Mettez ici la logique de vérification des identifiants
-    console.log('Username:', this.username);
-    console.log('Password:', this.password);
-  }
+    onSubmit() {
+      console.log('email:', this.email);
+      console.log('Password:', this.password);
+      this.loginService.log(this.email, this.password)
+        .then((result: any) => {
+          this.error = "";
+          localStorage.setItem('type_user', result.type_user);
+          localStorage.setItem('utilisateur', JSON.stringify(result.utilisateur));
+        })
+        .catch((error: any) => {
+          this.error = error.error ? error.error.message : error.message;
+        });
+    }
 }
