@@ -7,14 +7,13 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     const authToken = localStorage.getItem('token');
-    console.log("hello",req.url);
     
     if (req.url.includes('Utisateur/login')) {
       return next.handle(req);
     }
     const authReq = req.clone({
       setHeaders: {
-        Authorisation: `${authToken}`
+        autorisation: `${authToken}`
       }
     });
     return next.handle(authReq);
