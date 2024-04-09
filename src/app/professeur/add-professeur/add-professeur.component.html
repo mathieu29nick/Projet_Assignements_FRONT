@@ -1,0 +1,36 @@
+<div class="container">
+
+    <h1>Ajout d'un professeur</h1>
+    <form
+      ngForm
+      #professeurForm
+      (submit)="onSubmit($event); professeurForm.reset()"
+      class="form"
+    >
+      <mat-form-field>
+        <mat-label>Nom du professeur</mat-label>
+        <input
+          matInput
+          required
+          [(ngModel)]="nomProfesseur"
+          name="nom"
+          (input)="onInputChange()"
+        />
+      </mat-form-field>
+    
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input
+        matInput
+        required
+        [(ngModel)]="emailProfesseur"
+        name="email"
+        (input)="onInputChange()"
+      />
+      </mat-form-field>
+    
+      <mat-error *ngIf="error" class="error">{{error}}</mat-error>
+      
+    <button mat-raised-button [disabled]="nomProfesseur == '' || emailProfesseur == ''"> Ajouter un nouveau professeur</button>
+    </form>
+</div>

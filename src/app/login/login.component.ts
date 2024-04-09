@@ -33,15 +33,14 @@ export class LoginComponent {
     }
 
     onSubmit() {
-      console.log('email:', this.email);
-      console.log('Password:', this.password);
       this.loginService.log(this.email, this.password)
         .then((result: any) => {
           this.error = "";
           localStorage.setItem('type_user', result.type_user);
           localStorage.setItem('utilisateur', JSON.stringify(result.utilisateur));
+          localStorage.setItem('token', result.token);
           location.reload();
-          //this.router.navigate(['/professeurs']);
+          this.router.navigate(['/professeurs']);
         })
         .catch((error: any) => {
           this.error = error.error ? error.error.message : error.message;

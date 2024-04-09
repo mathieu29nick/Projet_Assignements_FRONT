@@ -1,0 +1,29 @@
+.form {
+    display:flex;
+    flex-direction: column;
+    margin:5px;
+  }
+
+.container{
+padding: 50px;
+}
+
+.mat-mdc-raised-button:not(:disabled){
+    background-color: rgb(21, 46, 96) !important;
+    color: white !important;
+    font-size: 14px !important;
+}
+
+.mat-mdc-raised-button:not(:disabled):hover{
+    background-color: white !important;
+    color: rgb(21, 46, 96) !important;
+}
+
+.error{
+    font-family: Verdana,
+    Geneva,
+    Tahoma,
+    sans-serif !important;
+    margin-bottom: 20px;
+    text-align: center;
+}
