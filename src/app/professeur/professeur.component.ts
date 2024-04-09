@@ -10,7 +10,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { FormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AddProfesseurComponent } from './add-professeur/add-professeur.component';
 
@@ -46,9 +46,13 @@ export class ProfesseurComponent {
   loading: Boolean = true;
   length: number = 0;
 
-  displayedColumns: string[] = ['_id', 'nom', 'email'];
+  displayedColumns: string[] = ['_id', 'nom', 'email', 'matières'];
 
-  constructor(private professeurService: ProfesseurService,public dialog: MatDialog) {}
+  constructor(
+    private professeurService: ProfesseurService,
+    public dialog: MatDialog,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     console.log('ngOnInit assignments, appelée AVANT affichage du composant');
@@ -88,10 +92,13 @@ export class ProfesseurComponent {
       });
   }
 
-  
   handlePageEvent(event: PageEvent) {
     this.page = event.pageIndex;
     this.limit = event.pageSize;
     this.getProfesseursFromService();
+  }
+
+  goListeMatiere(prof: Professeur) {
+    this.router.navigate(['/professeur/matieres'], { queryParams: prof });
   }
 }

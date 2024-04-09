@@ -13,12 +13,13 @@
         <mat-drawer #drawer opened="true" mode="side" position="start">
         <mat-nav-list>
             <mat-list-item>
-                <button routerLink="/professeurs" mat-button><mat-icon>table</mat-icon>Liste des professeurs</button>
+                <button routerLink="/professeurs" mat-button><mat-icon>list</mat-icon>Gestion des professeurs</button>
             </mat-list-item>
+            <mat-divider></mat-divider>
         </mat-nav-list>
         </mat-drawer>
         <mat-drawer-content>
-            <div style="text-align: center;min-height: 600px;">
+            <div style="text-align: center;min-height: 600px;padding:50px">
                 <router-outlet></router-outlet>
             </div>
         </mat-drawer-content>

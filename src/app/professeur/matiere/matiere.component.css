@@ -1,0 +1,38 @@
+table, tr, td {
+    border-collapse: collapse;
+    padding: 20px;
+  }
+  
+  table {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 15px 0px;
+    margin: 20px 0 20px 0;
+  }
+  
+  .demo-table {
+    width: 100%;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .btnAjout {
+    align-self: flex-end;
+  }
+  
+  .mat-mdc-unelevated-button:not(:disabled){
+    background-color: rgb(21, 46, 96) !important;
+  }
+  
+  .parent-container {
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .mat-mdc-progress-spinner{
+    width: 30px !important;
+    height: 30px !important;
+  }
+  

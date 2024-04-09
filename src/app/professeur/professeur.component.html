@@ -33,12 +33,12 @@
       <td mat-cell *matCellDef="let a">{{ a.email }}</td>
     </ng-container>
 
-    <!-- <ng-container matColumnDef="modifier">
-      <th mat-header-cell *matHeaderCellDef></th>
+    <ng-container matColumnDef="matières">
+      <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell *matCellDef="let a">
-        <button mat-button color="primary">Modifier</button>
+        <button mat-button color="primary" (click)="goListeMatiere(a)">Voir liste des matières</button>
       </td>
-    </ng-container> -->
+    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>

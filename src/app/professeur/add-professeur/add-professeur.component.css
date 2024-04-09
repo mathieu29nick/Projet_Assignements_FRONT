@@ -4,10 +4,6 @@
     margin:5px;
   }
 
-.container{
-padding: 50px;
-}
-
 .mat-mdc-raised-button:not(:disabled){
     background-color: rgb(21, 46, 96) !important;
     color: white !important;

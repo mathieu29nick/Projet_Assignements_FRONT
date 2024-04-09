@@ -10,6 +10,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatBadgeModule } from '@angular/material/badge';
 import { LoginComponent } from '../login/login.component';
 import { MatCardModule } from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
 
 @Component({
   selector: 'app-homepage',
@@ -25,7 +26,8 @@ import { MatCardModule } from '@angular/material/card';
     MatSidenavModule,
     MatBadgeModule,
     LoginComponent,
-    MatCardModule
+    MatCardModule,
+    MatDividerModule
   ],
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css']

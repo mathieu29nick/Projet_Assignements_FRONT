@@ -15,7 +15,6 @@ table {
 .container {
   display: flex;
   flex-direction: column;
-  padding: 50px;
 }
 
 .btnAjout {
@@ -27,7 +26,6 @@ table {
 }
 
 .parent-container {
-  display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
