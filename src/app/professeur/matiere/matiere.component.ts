@@ -8,6 +8,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTable, MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import {MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule, MatDialogTitle} from '@angular/material/dialog';
+import { AddMatiereComponent } from './add-matiere/add-matiere.component';
 
 @Component({
   selector: 'app-matiere',
@@ -19,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatTable,
     MatProgressSpinnerModule,
     MatButtonModule,
+    MatDialogModule
   ],
   templateUrl: './matiere.component.html',
   styleUrl: './matiere.component.css',
@@ -32,7 +35,8 @@ export class MatiereComponent {
   constructor(
     private professeurService: ProfesseurService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -49,5 +53,9 @@ export class MatiereComponent {
         this.listeMatiere = data.data;
         this.loading = false;
       });
+  }
+
+  ajoutMatiere(){
+    this.dialog.open(AddMatiereComponent);
   }
 }

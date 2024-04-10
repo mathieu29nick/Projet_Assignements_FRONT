@@ -6,7 +6,7 @@
   <div class="container">
     <h2>{{ titre }}{{" "+professeur.nom}}</h2>
     <div class="btnAjout">
-      <button mat-flat-button color="accent" >
+      <button mat-flat-button color="accent" (click)="ajoutMatiere()">
         <mat-icon>add</mat-icon>Ajouter une nouvelle matière
       </button>
     </div>

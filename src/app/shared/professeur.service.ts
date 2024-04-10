@@ -23,4 +23,23 @@ export class ProfesseurService {
       return this.http.get<Matiere>(api("Professeur/matieres?idProf="+idProf));
     }
 
+    ajoutMatiere(idProf: string | undefined,libelle: string, niveau: string,photo: string): Promise<any> {
+      return new Promise((resolve, reject) => {
+        if (!libelle || libelle === '') {
+          reject(new Error("Veuillez saisir l'intitulé de la matière"));
+        } else if (!niveau || niveau === '') {
+          reject(new Error("Veuillez choisir le niveau"));
+        }else if (!photo || photo === '') {
+          reject(new Error("Veuillez saisir l'URL de la photo"));
+        } else {
+          this.http.put(api("Professeur/matiere/"+idProf), { libelle: libelle, idNiveau: niveau,photo: photo }).toPromise()
+            .then((result: any) => {
+              resolve(result);
+            })
+            .catch((error: any) => {
+              reject(error);
+            });
+        }
+      });
+    }
 }
