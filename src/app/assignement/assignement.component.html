@@ -1,0 +1,77 @@
+@if(loading) {
+    <div class="parent-container">
+      <mat-spinner></mat-spinner>
+    </div>
+  } @else {
+  <div class="container">
+    <h2>Liste des devoirs</h2>
+    <mat-form-field class="full-width white">
+        <mat-label>Matiere</mat-label>
+        <mat-select (selectionChange)="onInputChange()" [(value)]="idMatiere" >
+            <mat-option *ngFor="let mat of matieres" [value]="mat._id">{{ mat.libelle }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+    <div class="btnAjout">
+      <button mat-flat-button color="accent" routerLink="/assignment/ajout">
+        <mat-icon>add</mat-icon>Ajouter nouvel assignement
+      </button>
+    </div>
+  
+  
+  
+    <table
+      mat-table
+      [dataSource]="assignements"
+      class="mat-elevation-z8 demo-table"
+    >
+      <ng-container matColumnDef="_id">
+        <th mat-header-cell *matHeaderCellDef >id</th>
+        <td mat-cell *matCellDef="let a" (click)="goFicheAssignement(a)" class="ass-info">{{ a._id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="prof">
+        <th mat-header-cell *matHeaderCellDef>Nom du professeur</th>
+        <td mat-cell *matCellDef="let a">{{ a.prof }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="libelle">
+        <th mat-header-cell *matHeaderCellDef>Libelle</th>
+        <td mat-cell *matCellDef="let a">{{ a.nomAssignement }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="matière">
+        <th mat-header-cell *matHeaderCellDef>Matière</th>
+        <td mat-cell *matCellDef="let a">{{ a.matiere }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="délai">
+        <th mat-header-cell *matHeaderCellDef>Delai</th>
+        <td mat-cell *matCellDef="let a">{{ a.dateRendu }}</td>
+      </ng-container>
+  
+      <!-- <ng-container matColumnDef="info">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let a">
+          <button mat-button color="primary" (click)="goFicheAssignement(a)">Fiche</button>
+        </td>
+      </ng-container>
+   -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+      <mat-paginator
+        #paginator
+        class="demo-paginator"
+        (page)="handlePageEvent($event)"
+        [length]="length"
+        [pageSize]="limit"
+        [showFirstLastButtons]="true"
+        [pageSizeOptions]="[1,5, 10, 25,50]"
+        [pageIndex]="page"
+        aria-label="Select page"
+      >
+      </mat-paginator>
+  </div>
+  }
+  

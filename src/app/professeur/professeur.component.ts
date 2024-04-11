@@ -55,7 +55,6 @@ export class ProfesseurComponent {
   ) {}
 
   ngOnInit() {
-    console.log('ngOnInit assignments, appelée AVANT affichage du composant');
     this.getProfesseursFromService();
   }
 
@@ -75,19 +74,19 @@ export class ProfesseurComponent {
         this.totalPage = data.data.totalPage;
         this.page = Number(data.data.page);
         this.limit = Number(data.data.pageNumber);
-        this.nextPage = Number(data.data.page) + 1;
-        this.prevPage = Number(data.data.page) - 1;
+        // this.nextPage = Number(data.data.page) + 1;
+        // this.prevPage = Number(data.data.page) - 1;
         this.length = data.data.dataLength;
-        if (Number(data.data.page) - 1 < 0) {
-          this.hasPrevPage = false;
-        } else {
-          this.hasPrevPage = true;
-        }
-        if (Number(data.data.page) + 1 >= data.data.totalPage) {
-          this.hasNextPage = false;
-        } else {
-          this.hasNextPage = true;
-        }
+        // if (Number(data.data.page) - 1 < 0) {
+        //   this.hasPrevPage = false;
+        // } else {
+        //   this.hasPrevPage = true;
+        // }
+        // if (Number(data.data.page) + 1 >= data.data.totalPage) {
+        //   this.hasNextPage = false;
+        // } else {
+        //   this.hasNextPage = true;
+        // }
         this.loading = false;
       });
   }

@@ -4,6 +4,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { ProfesseurComponent } from './professeur/professeur.component';
 import { AddProfesseurComponent } from './professeur/add-professeur/add-professeur.component';
 import { MatiereComponent } from './professeur/matiere/matiere.component';
+import { AssignementComponent } from './assignement/assignement.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -12,4 +13,5 @@ export const routes: Routes = [
     { path: 'professeurs', component: ProfesseurComponent },
     { path: 'professeur/ajout', component: AddProfesseurComponent },
     { path: 'professeur/matieres', component: MatiereComponent },
+    { path: 'assignements', component: AssignementComponent },
 ];
