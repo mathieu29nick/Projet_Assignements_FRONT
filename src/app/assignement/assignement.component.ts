@@ -95,6 +95,6 @@ export class AssignementComponent {
   }
 
   goFicheAssignement(ass: Assignement) {
-    // this.router.navigate(['/assignement'], { queryParams: ass });
+    this.router.navigate(['/assignement'], { queryParams: { idAssignement: ass._id } });
   }
 }
