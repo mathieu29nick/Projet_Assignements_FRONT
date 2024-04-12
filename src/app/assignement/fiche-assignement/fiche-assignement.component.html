@@ -1,0 +1,102 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title class="login-title">Fiche Assignement</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    @if(loading) {
+    <div class="parent-container">
+      <mat-spinner></mat-spinner>
+    </div>
+    } @else {
+    <mat-list>
+      <div mat-subheader>Information</div>
+      <div style="display: flex; flex-wrap: wrap; margin-bottom: 20px">
+        <div class="list-info">
+          <mat-list-item>
+            <mat-icon matListItemIcon>title</mat-icon>
+            <div matListItemTitle>Devoir</div>
+            <div matListItemLine class="list-desc">
+              {{ assignement.nomAssignement }}
+            </div>
+          </mat-list-item>
+        </div>
+
+        <div class="list-info">
+          <mat-list-item>
+            <mat-icon matListItemIcon>book</mat-icon>
+            <div matListItemTitle>Matière</div>
+            <div matListItemLine class="list-desc">
+              {{ assignement.matiere }}
+            </div>
+          </mat-list-item>
+        </div>
+        <div class="list-info">
+          <mat-list-item>
+            <mat-icon matListItemIcon>Description</mat-icon>
+            <div matListItemTitle>Description</div>
+            <div matListItemLine class="list-desc">
+              {{ assignement.description }}
+            </div>
+          </mat-list-item>
+        </div>
+        <div class="list-info">
+          <mat-list-item>
+            <mat-icon matListItemIcon>person</mat-icon>
+            <div matListItemTitle>Prof</div>
+            <div matListItemLine class="list-desc">{{ assignement.prof }}</div>
+          </mat-list-item>
+        </div>
+        <div class="list-info">
+          <mat-list-item>
+            <mat-icon matListItemIcon>calendar_today</mat-icon>
+            <div matListItemTitle>Délai</div>
+            <div matListItemLine class="list-desc">
+              {{ assignement.dateRendu }}
+            </div>
+          </mat-list-item>
+        </div>
+        <div class="list-info">
+          <mat-list-item>
+            <mat-icon matListItemIcon>star</mat-icon>
+            <div matListItemTitle>Niveau</div>
+            <div matListItemLine class="list-desc">
+              {{ assignement.niveau }}
+            </div>
+          </mat-list-item>
+        </div>
+        <div class="list-info">
+          @if(assignement.statut) {
+          <mat-list-item>
+            <mat-icon matListItemIcon>lock</mat-icon>
+            <div matListItemTitle>Statut</div>
+            <div matListItemLine class="list-desc">Devoir déjà validé</div>
+          </mat-list-item>
+          } @else{
+          <mat-list-item>
+            <mat-icon matListItemIcon>lock_open</mat-icon>
+            <div matListItemTitle>Statut</div>
+            <div matListItemLine class="list-desc">
+              Devoir en cours de traitement
+            </div>
+          </mat-list-item>
+          }
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="div-action">
+        <div class="btnModif">
+          <button mat-flat-button color="accent" routerLink="/professeur/ajout">
+            <mat-icon>edit</mat-icon>Modifier
+          </button>
+        </div>
+        <div class="btnList">
+          <button mat-flat-button color="accent" routerLink="/professeur/ajout">
+            <mat-icon>list</mat-icon>Liste des assignements des élèves
+          </button>
+        </div>
+      </div>
+    </mat-list>
+    }
+  </mat-card-content>
+</mat-card>

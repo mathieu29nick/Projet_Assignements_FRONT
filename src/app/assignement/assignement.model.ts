@@ -5,5 +5,8 @@ export class Assignement {
     description?: string;
     statut?: Boolean;
     detailAssignementEleve?:[];
+    prof?: string;
+    matiere?:string;
+    niveau?:string;
 }
   

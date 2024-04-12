@@ -6,15 +6,32 @@ import { Observable } from 'rxjs';
 import { Assignement } from '../assignement/assignement.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AssignementService {
-    constructor( private http: HttpClient ) {}
+  constructor(private http: HttpClient) {}
 
-    getAssignements = (pageNumber?: Number, page?: Number, idProf?: string, idMatiere?: string ) => {
-        let query = idProf ? "&idProf="+idProf : '';
-        query = idMatiere ? query + "&matiere="+idMatiere : query;
-        console.log("api ass",api("Professeur/assignements?pageNumber=" + pageNumber + "&page=" + page+"&idProf="+idProf+"&matiere="+idMatiere));
-        return this.http.get<Assignement[]>(api("Professeur/assignements?pageNumber=" + pageNumber + "&page=" + page+query));
-    }
+  getAssignements = (
+    pageNumber?: Number,
+    page?: Number,
+    idProf?: string,
+    idMatiere?: string
+  ) => {
+    let query = idProf ? '&idProf=' + idProf : '';
+    query = idMatiere ? query + '&matiere=' + idMatiere : query;
+    return this.http.get<Assignement[]>(
+      api(
+        'Professeur/assignements?pageNumber=' +
+          pageNumber +
+          '&page=' +
+          page +
+          query
+      )
+    );
+  };
+  getOneAssignement = (idAss: string) => {
+    return this.http.get<Assignement>(
+      api('Professeur/assignements/assignement?idAssignement=' + idAss)
+    );
+  };
 }

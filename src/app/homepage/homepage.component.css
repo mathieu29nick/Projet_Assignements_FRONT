@@ -5,3 +5,7 @@
 .mat-toolbar.mat-primary{
   background-color: rgb(21, 46, 96) !important;;
 }
+
+.mat-drawer-container {
+  height: 100%;
+}

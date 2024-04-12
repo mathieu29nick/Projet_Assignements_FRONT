@@ -64,8 +64,6 @@ export class AssignementComponent {
   }
 
   onInputChange() {
-    console.log("hello");
-    
     this.getAssignementsFromService();
   }
 
