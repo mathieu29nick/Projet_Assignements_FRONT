@@ -1,0 +1,141 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title class="login-title"
+      >Fiche Detail Assignement</mat-card-title
+    >
+  </mat-card-header>
+
+  <mat-card-content>
+    @if(loading) {
+    <div class="parent-container">
+      <mat-spinner></mat-spinner>
+    </div>
+    } @else {
+    <mat-list>
+      <div mat-subheader>Information</div>
+      <div style="display: flex; flex-wrap: wrap; margin-bottom: 20px">
+        <div class="list-info">
+          <mat-list-item>
+            <mat-icon matListItemIcon>person</mat-icon>
+            <div matListItemTitle>Eleve</div>
+            <div matListItemLine class="list-desc">
+              {{ detailAssignement.eleve }}
+            </div>
+          </mat-list-item>
+        </div>
+        <div class="list-info">
+          @if(detailAssignement.rendu) {
+          <mat-list-item>
+            <mat-icon matListItemIcon>check_circle</mat-icon>
+            <div matListItemTitle>Etat du devoir</div>
+            <div matListItemLine class="list-desc">Rendu</div>
+          </mat-list-item>
+          } @else{
+          <mat-list-item>
+            <mat-icon matListItemIcon>cancel</mat-icon>
+            <div matListItemTitle>Etat du devoir</div>
+            <div matListItemLine class="list-desc">Non rendu</div>
+          </mat-list-item>
+          }
+        </div>
+        <div class="list-info">
+          <mat-list-item>
+            <mat-icon matListItemIcon>title</mat-icon>
+            <div matListItemTitle>Devoir</div>
+            <div matListItemLine class="list-desc">
+              {{ detailAssignement.assignement }}
+            </div>
+          </mat-list-item>
+        </div>
+        <div class="list-info">
+          <mat-list-item>
+            <mat-icon matListItemIcon>date_range</mat-icon>
+            <div matListItemTitle>Date de rendu de devoir</div>
+            <div matListItemLine class="list-desc">
+              {{
+                detailAssignement.dateRenduEleve
+                  ? detailAssignement.dateRenduEleve
+                  : "pas encore rendu"
+              }}
+            </div>
+          </mat-list-item>
+        </div>
+        <div class="list-info">
+          <mat-list-item>
+            <mat-icon matListItemIcon>calendar_today</mat-icon>
+            <div matListItemTitle>Délai</div>
+            <div matListItemLine class="list-desc">
+              {{ detailAssignement.dateRendu }}
+            </div>
+          </mat-list-item>
+        </div>
+        <div class="list-info">
+          <mat-list-item>
+            <mat-icon matListItemIcon>star</mat-icon>
+            <div matListItemTitle>Note</div>
+            <div matListItemLine class="list-desc">
+              {{ detailAssignement.note ? detailAssignement.note : "-----" }}
+            </div>
+          </mat-list-item>
+        </div>
+
+        <div class="list-info">
+          <mat-list-item>
+            <mat-icon matListItemIcon>book</mat-icon>
+            <div matListItemTitle>Matière</div>
+            <div matListItemLine class="list-desc">
+              {{ detailAssignement.matiere }}
+            </div>
+          </mat-list-item>
+        </div>
+        <div class="list-info">
+          <mat-list-item>
+            <mat-icon matListItemIcon>comment</mat-icon>
+            <div matListItemTitle>Remarque</div>
+            <div matListItemLine class="list-desc">
+              {{
+                detailAssignement.remarque
+                  ? detailAssignement.remarque
+                  : "-----"
+              }}
+            </div>
+          </mat-list-item>
+        </div>
+
+        <div class="list-info">
+          <mat-list-item>
+            <mat-icon matListItemIcon>school</mat-icon>
+            <div matListItemTitle>Niveau</div>
+            <div matListItemLine class="list-desc">
+              {{ detailAssignement.niveau }}
+            </div>
+          </mat-list-item>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="div-action">
+        <div class="btnList">
+          <button mat-flat-button color="accent" routerLink="/professeur/ajout">
+            <mat-icon>arrow_back</mat-icon>Retour
+          </button>
+        </div>
+        <div class="btnModif">
+          <button mat-flat-button color="accent" routerLink="/professeur/ajout">
+            <mat-icon>arrow_upward</mat-icon>Rendre le devoir
+          </button>
+        </div>
+        <div class="btnList">
+          <button mat-flat-button color="accent" routerLink="/professeur/ajout">
+            <mat-icon>check</mat-icon>Confirmer le rendu de devoir
+          </button>
+        </div>
+        <div class="btnList">
+          <button mat-flat-button color="accent" routerLink="/professeur/ajout">
+            <mat-icon>star</mat-icon>Noter le devoir
+          </button>
+        </div>
+      </div>
+    </mat-list>
+    }
+  </mat-card-content>
+</mat-card>
