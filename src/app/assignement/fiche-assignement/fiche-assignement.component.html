@@ -58,7 +58,7 @@
         </div>
         <div class="list-info">
           <mat-list-item>
-            <mat-icon matListItemIcon>star</mat-icon>
+            <mat-icon matListItemIcon>school</mat-icon>
             <div matListItemTitle>Niveau</div>
             <div matListItemLine class="list-desc">
               {{ assignement.niveau }}
@@ -85,6 +85,11 @@
       </div>
       <mat-divider></mat-divider>
       <div class="div-action">
+        <div class="btnList">
+          <button mat-flat-button color="accent" routerLink="/professeur/ajout">
+            <mat-icon>arrow_back</mat-icon>Retour
+          </button>
+        </div>
         <div class="btnModif">
           <button mat-flat-button color="accent" routerLink="/professeur/ajout">
             <mat-icon>edit</mat-icon>Modifier
