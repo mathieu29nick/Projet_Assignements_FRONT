@@ -1,0 +1,126 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.add-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    height: 100%;
+  }
+  .container{
+    width: 100%;
+  }
+
+  .mat-stepper-vertical {
+    margin-top: 8px;
+  }
+  
+  .mat-mdc-form-field {
+    margin-top: 16px;
+  }
+  
+  @media screen and (max-width: 500px) {
+    .add-container {
+      justify-content: flex-start;
+      padding-top: 40px;
+    }
+  }
+  
+  .add-img{
+    margin: 0 0  30px 0;
+  }
+  
+  .add-card {
+    width: 30%;
+    min-width: 330px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 15px 0px;
+    padding: 20px 20px 20px 20px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .mat-mdc-card-header {
+    justify-content: center;
+    padding-bottom: 16px;
+  }
+  
+  .add-title {
+    color: rgb(21, 46, 96);
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  .mat-mdc-form-field {
+    font-size: 14px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: white !important;
+  }
+  
+  .white {
+    --mdc-filled-text-field-container-color: white !important; 
+    --mat-form-field-hover-state-layer-opacity: 0;
+    --mat-form-field-focus-state-layer-opacity: 0;
+  }
+  
+  .add-button {
+    background-color: rgb(21, 46, 96) !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+    color: white !important;
+  }
+  
+  .add-button:hover {
+    background-color: white !important;
+    color: rgb(21, 46, 96) !important;
+  }
+  
+  .add-button-content {
+    justify-content: center;
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  .add-error {
+    font-size: 14px !important;
+    background-color: var(--mat-form-field-error-text-color);
+    color: black;
+    padding: 5px 5px 5px 5px;
+  }
+  
+  .mat-stepper-horizontal {
+    margin-top: 8px;
+  }
+  
+  .mat-mdc-form-field {
+    margin-top: 16px;
+  }
+
+  .parent-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+.mat-mdc-progress-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px !important;
+  height: 30px !important;
+}
+
+
+
+  

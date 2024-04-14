@@ -36,3 +36,9 @@ table, tr, td {
     height: 30px !important;
   }
   
+  .center-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }

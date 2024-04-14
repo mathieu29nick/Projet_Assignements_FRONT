@@ -1,0 +1,83 @@
+
+@if(loading) {
+    <div class="parent-container">
+      <mat-spinner></mat-spinner>
+    </div>
+} @else {
+  <h2 mat-dialog-title>Ajout d'un nouveau assignement</h2>
+  <div class="container">
+    <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Nom de l'assignement</ng-template>
+          <mat-form-field class="full-width white">
+            <mat-label>Assignement</mat-label>
+            <input matInput placeholder="" name="nom" formControlName="firstCtrl" required (input)="onInputChange()">
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>>></button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Description de l'assignement</ng-template>
+          <mat-form-field class="full-width white">
+            <mat-label>Description</mat-label>
+            <input matInput name="description" formControlName="secondCtrl" placeholder="" (input)="onInputChange()" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious><<</button>
+            <button mat-button matStepperNext>>></button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup">
+          <ng-template matStepLabel>Date de rendu</ng-template>
+          <mat-form-field class="full-width white">
+            <mat-label>Date de rendu</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              name="dateRendu"
+              formControlName="thirdCtrl"
+              (input)="onInputChange()"
+            />
+            <mat-hint>dd/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious><<</button>
+          <button mat-button matStepperNext>>></button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="fourFormGroup" *ngIf="!isPopUP">
+        <form [formGroup]="fourFormGroup">
+          <ng-template matStepLabel>Matière</ng-template>
+          <mat-form-field class="full-width white">
+            <mat-label>Matière</mat-label>
+            <mat-select (input)="onInputChange()" [(value)]="matiere" formControlName="fourCtrl" required>
+              <mat-option *ngFor="let matiere of listeMatiere" [value]="matiere._id">{{ matiere.libelle }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>>></button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Terminé</ng-template>
+        <p>Veuillez clôturer votre ajout!</p>
+        <div>
+          <button mat-button matStepperPrevious><<</button>
+          <button mat-flat-button (click)="onSubmit()" color="warn">Soumettre</button>
+          <br>
+          <mat-error class="exeption">{{error}}</mat-error>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </div>      
+}
