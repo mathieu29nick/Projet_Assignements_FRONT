@@ -1,0 +1,24 @@
+.example-viewport {
+    height: 500px;
+    /* width: 800px; */
+    /* border: 1px solid black; */
+}
+.card {
+    margin: 20px 20px 20px 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 15px 0px;
+  }
+
+.mat-mdc-progress-spinner {
+width: 30px !important;
+height: 30px !important;
+margin-left: 40%;
+margin-top: 160px;
+}
+
+.mat-mdc-card-content {
+    text-align: initial !important;
+}
+
+.mdc-list-group__subheader{
+    font-weight: bold;
+}
