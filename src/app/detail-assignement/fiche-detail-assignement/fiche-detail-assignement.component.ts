@@ -54,11 +54,9 @@ export class FicheDetailAssignementComponent {
 
   getDetailAssignementFromService() {
     
-    console.log("this.idEleve",this.idEleve);
     this.detailAssignementService
       .getOneDetailAssignement(this.idAss,this.idEleve)
       .subscribe((data: any) => {
-        console.log("this.idEleve",this.idEleve);
         
         this.detailAssignement = data.data ;
         this.loading = false;
