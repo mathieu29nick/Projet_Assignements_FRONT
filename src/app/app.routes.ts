@@ -7,6 +7,7 @@ import { MatiereComponent } from './professeur/matiere/matiere.component';
 import { AssignementComponent } from './assignement/assignement.component';
 import { FicheAssignementComponent } from './assignement/fiche-assignement/fiche-assignement.component';
 import { FicheDetailAssignementComponent } from './detail-assignement/fiche-detail-assignement/fiche-detail-assignement.component';
+import { AddAssignementComponent } from './professeur/matiere/add-matiere/add-assignement/add-assignement.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -18,4 +19,5 @@ export const routes: Routes = [
     { path: 'assignements', component: AssignementComponent },
     { path: 'assignement', component: FicheAssignementComponent },
     { path: 'detail-assignement', component: FicheDetailAssignementComponent },
+    { path: 'assignement/ajout-assignement', component: AddAssignementComponent },
 ];

@@ -42,4 +42,26 @@ export class ProfesseurService {
         }
       });
     }
+
+    ajoutAssignementMatiere(idMatiere: string | null,nomAssignement: string | null, description: string | null,dateRendu: string | null): Promise<any> {
+      return new Promise((resolve, reject) => {
+        if (!nomAssignement || nomAssignement === '') {
+          reject(new Error("Veuillez saisir l'intitulé de l\'assignement!"));
+        } else if (!description || description === '') {
+          reject(new Error("Veuillez saisir la description de \'assignement!"));
+        }else if (!dateRendu || dateRendu === '' || isNaN(Date.parse(dateRendu))) {
+          reject(new Error("Veuillez saisir la dateRendu de l\'assignement!"));
+        }else if (!idMatiere || idMatiere === '') {
+          reject(new Error("Veuillez choisir une matière!"));
+        } else {
+          this.http.put(api("Professeur/insertionAssigmentMatiere/"+idMatiere), { nomAssignement: nomAssignement, description: description,dateRendu: dateRendu }).toPromise()
+            .then((result: any) => {
+              resolve(result);
+            })
+            .catch((error: any) => {
+              reject(error);
+            });
+        }
+      });
+    }
 }

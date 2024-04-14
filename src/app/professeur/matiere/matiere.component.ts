@@ -10,6 +10,8 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import {MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule, MatDialogTitle} from '@angular/material/dialog';
 import { AddMatiereComponent } from './add-matiere/add-matiere.component';
+import { AddAssignementComponent } from './add-matiere/add-assignement/add-assignement.component';
+import { MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-matiere',
@@ -21,7 +23,8 @@ import { AddMatiereComponent } from './add-matiere/add-matiere.component';
     MatTable,
     MatProgressSpinnerModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    AddAssignementComponent
   ],
   templateUrl: './matiere.component.html',
   styleUrl: './matiere.component.css',
@@ -31,7 +34,7 @@ export class MatiereComponent {
   listeMatiere: Matiere[] = []
   loading: Boolean = true;
   titre: string = 'Liste des matières du prof : ';
-  displayedColumns: string[] = ['photo','_id', 'matière', 'niveau'];
+  displayedColumns: string[] = ['photo','_id', 'matière', 'niveau','assignement'];
   constructor(
     private professeurService: ProfesseurService,
     private router: Router,
@@ -57,5 +60,11 @@ export class MatiereComponent {
 
   ajoutMatiere(){
     this.dialog.open(AddMatiereComponent);
+  }
+
+  ajoutAssignement(matiere: Matiere) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = { matiere: matiere };
+    this.dialog.open(AddAssignementComponent, dialogConfig);
   }
 }
