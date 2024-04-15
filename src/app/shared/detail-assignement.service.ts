@@ -53,4 +53,39 @@ export class DetailAssignementService {
           });
     });
   }
+
+  validerOneDetailAssignement = (idAss : string|undefined, idEleve :string|undefined ) => {
+    return new Promise((resolve, reject) => {
+        this.http.put(api("Professeur/assignement/eleve/validation/"+idAss+"/"+idEleve),{}).toPromise()
+          .then((result: any) => {
+            resolve(result);
+          })
+          .catch((error: any) => {
+            reject(error);
+          });
+    });
+  }
+
+  rendreDevoir = (idAss : string|undefined) => {
+    let idEleve = '';
+    let userString = localStorage.getItem("utilisateur");
+    let userObject;
+    if (userString) {
+        try {
+            userObject = JSON.parse(userString);
+            idEleve=userObject["_id"];
+        } catch (error) {
+           console.error("Veuillez-vous reconnecter!");
+        }
+    }
+    return new Promise((resolve, reject) => {
+        this.http.put(api("Eleve/assignement/"+idAss+"/"+idEleve),{}).toPromise()
+          .then((result: any) => {
+            resolve(result);
+          })
+          .catch((error: any) => {
+            reject(error);
+          });
+    });
+  }
 }

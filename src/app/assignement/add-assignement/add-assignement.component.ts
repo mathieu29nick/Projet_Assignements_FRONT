@@ -7,11 +7,11 @@ import {MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialog
 import { FormControl, FormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import { Professeur } from '../../../professeur.model';
+import { Professeur } from '../../professeur/professeur.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { ProfesseurService } from '../../../../shared/professeur.service';
-import { Matiere } from '../../matiere.model';
+import { ProfesseurService } from '../../shared/professeur.service';
+import { Matiere } from '../../professeur/matiere/matiere.model';
 import { MatDialogRef} from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';

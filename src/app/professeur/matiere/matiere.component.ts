@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import {MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule, MatDialogTitle} from '@angular/material/dialog';
 import { AddMatiereComponent } from './add-matiere/add-matiere.component';
-import { AddAssignementComponent } from './add-matiere/add-assignement/add-assignement.component';
+import { AddAssignementComponent } from '../../assignement/add-assignement/add-assignement.component';
 import { MatDialogConfig } from '@angular/material/dialog';
 
 @Component({

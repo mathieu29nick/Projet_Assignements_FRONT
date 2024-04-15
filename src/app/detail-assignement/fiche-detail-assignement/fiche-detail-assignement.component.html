@@ -115,26 +115,27 @@
       <mat-divider></mat-divider>
       <div class="div-action">
         <div class="btnList">
-          <button mat-flat-button color="accent" routerLink="/professeur/ajout">
+          <button mat-raised-button style="background-color: rgb(21, 46, 96);color:white" (click)="retourPagePrecedente()">
             <mat-icon>arrow_back</mat-icon>Retour
           </button>
         </div>
-        <div class="btnModif">
-          <button mat-flat-button color="accent" routerLink="/professeur/ajout">
+        <div class="btnModif" *ngIf="!detailAssignement.dateRenduEleve">
+            <button mat-raised-button (click)="rendreDevoir()" color="accent">
             <mat-icon>arrow_upward</mat-icon>Rendre le devoir
           </button>
         </div>
-        <div class="btnList">
-          <button mat-flat-button color="accent" routerLink="/professeur/ajout">
+        <div class="btnList" *ngIf="detailAssignement.dateRenduEleve && !detailAssignement.rendu">
+          <button mat-flat-button style="background-color: darkgreen;color: white;" (click)="validerDevoir()" >
             <mat-icon>check</mat-icon>Confirmer le rendu de devoir
           </button>
         </div>
-        <div class="btnList">
-          <button mat-flat-button color="accent" routerLink="/professeur/ajout">
+        <div class="btnList" *ngIf="detailAssignement.rendu">
+          <button mat-flat-button color="warn" >
             <mat-icon>star</mat-icon>Noter le devoir
           </button>
         </div>
       </div>
+      <div *ngIf="erreur" class="div-error"><div class="error">{{erreur}}</div></div>
     </mat-list>
     }
   </mat-card-content>
