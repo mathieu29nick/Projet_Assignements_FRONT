@@ -1,0 +1,52 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title class="login-title">Liste des élèves qui ont été assigné pour cet assignement</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+        <br>
+        @if(loading) {
+            <div class="parent-container">
+              <mat-spinner></mat-spinner>
+            </div>
+        } @else {
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+                <ng-container matColumnDef="position">
+                  <th mat-header-cell *matHeaderCellDef></th>
+                  <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="eleve">
+                  <th mat-header-cell *matHeaderCellDef> Nom Eleve </th>
+                  <td mat-cell *matCellDef="let element"> {{ element.eleve }} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="rendu">
+                  <th mat-header-cell *matHeaderCellDef>Status (Rendu/Non Rendu)</th>
+                  <td mat-cell *matCellDef="let element">
+                    <ng-container *ngIf="element.rendu; else nonRendu">
+                        Rendu <mat-icon style="color: green;">check</mat-icon>
+                      </ng-container>
+                      <ng-template #nonRendu>
+                        Non rendu <mat-icon style="color: red;">hourglass_empty</mat-icon>
+                      </ng-template>
+                  </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="voir">
+                  <th mat-header-cell *matHeaderCellDef>Detail de son assignement</th>
+                  <td mat-cell *matCellDef="let element">
+                    <button mat-flat-button color="primary">Detail</button>
+                  </td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+              
+              
+              
+              
+    }
+    </mat-card-content>
+</mat-card>

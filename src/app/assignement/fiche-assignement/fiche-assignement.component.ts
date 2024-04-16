@@ -11,6 +11,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDivider, MatDividerModule } from '@angular/material/divider';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { DetailAssignementComponent } from './detail-assignement/detail-assignement.component';
+import { DetailAssignement } from '../../detail-assignement/detail-assignement.model';
 
 @Component({
   selector: 'app-fiche-assignement',
@@ -26,18 +28,21 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatListItem,
     MatListModule, 
     MatIconModule,
-     MatDividerModule, 
-     DatePipe,
-     MatGridListModule,
-     MatProgressSpinnerModule
+    MatDividerModule, 
+    DatePipe,
+    MatGridListModule,
+    MatProgressSpinnerModule,
+    DetailAssignementComponent
   ],
   templateUrl: './fiche-assignement.component.html',
   styleUrl: './fiche-assignement.component.css',
 })
 export class FicheAssignementComponent {
   assignement: Assignement = {};
+  detail: DetailAssignement[] | undefined;
   idAss: string = '';
   loading: Boolean = true;
+
   constructor(
     private assignementService: AssignementService,
     private route: ActivatedRoute,
@@ -56,6 +61,7 @@ export class FicheAssignementComponent {
       .getOneAssignement(this.idAss)
       .subscribe((data: any) => {
         this.assignement = data.data ;
+        this.detail=this.assignement.detailAssignementEleve;
         this.loading = false;
       });
   }
