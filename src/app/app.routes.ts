@@ -9,6 +9,7 @@ import { FicheAssignementComponent } from './assignement/fiche-assignement/fiche
 import { FicheDetailAssignementComponent } from './detail-assignement/fiche-detail-assignement/fiche-detail-assignement.component';
 import { AddAssignementComponent } from './assignement/add-assignement/add-assignement.component';
 import { ValiderDetailAssignementComponent } from './detail-assignement/valider-detail-assignement/valider-detail-assignement.component';
+import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -22,4 +23,5 @@ export const routes: Routes = [
     { path: 'detail-assignement', component: FicheDetailAssignementComponent },
     { path: 'assignement/ajout-assignement', component: AddAssignementComponent },
     { path: 'valider-assignements-eleves', component: ValiderDetailAssignementComponent },
+    { path: 'profile', component: UtilisateurComponent },
 ];

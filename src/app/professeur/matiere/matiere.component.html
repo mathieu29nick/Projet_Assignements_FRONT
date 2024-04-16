@@ -21,7 +21,7 @@
     
     <ng-container matColumnDef="photo">
         <th mat-header-cell *matHeaderCellDef>Image</th>
-        <td mat-cell *matCellDef="let a"><img [src]="a.photo"/></td>
+        <td mat-cell *matCellDef="let a"><img style="margin-left: 20px;" src="{{a.photo?a.photo:'https://st2.depositphotos.com/5266903/8132/v/450/depositphotos_81321446-stock-illustration-examination-flat-cyan-and-blue.jpg'}}" width="35" alt="{{a.libelle}}"></td>
       </ng-container>
       <ng-container matColumnDef="_id">
         <th mat-header-cell *matHeaderCellDef>id</th>

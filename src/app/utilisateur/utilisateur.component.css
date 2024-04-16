@@ -1,0 +1,41 @@
+.mat-mdc-list-item-icon {
+    color: rgba(0, 0, 0, 0.54);
+  }
+  
+  .mat-mdc-card-content {
+    text-align: initial !important;
+  }
+  
+  .mat-mdc-progress-spinner {
+    width: 30px !important;
+    height: 30px !important;
+    margin-left: 40%;
+    margin-top: 160px;
+  }
+  
+  .mat-mdc-card {
+    min-height: 400px;
+  }
+  
+
+  .list-item-title {
+    text-align: left; /* Alignement du texte "Nom" à gauche */
+    width: 100px; /* Largeur fixe pour le texte "Nom" */
+  }
+  
+  
+  .list-desc {
+    white-space: pre-wrap;
+  }
+  
+  
+  .mat-mdc-list-item.mdc-list-item--with-leading-icon.mdc-list-item--with-two-lines {
+      height: auto !important;
+  }
+  
+  .div-action{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+  }

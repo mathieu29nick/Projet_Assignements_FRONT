@@ -46,7 +46,7 @@ export class ProfesseurComponent {
   loading: Boolean = true;
   length: number = 0;
 
-  displayedColumns: string[] = ['_id', 'nom', 'email', 'matières'];
+  displayedColumns: string[] = ['photo','_id', 'nom', 'email', 'matières'];
 
   constructor(
     private professeurService: ProfesseurService,
