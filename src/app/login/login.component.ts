@@ -36,6 +36,8 @@ export class LoginComponent {
       this.loginService.log(this.email, this.password)
         .then((result: any) => {
           this.error = "";
+          const now = new Date();
+          localStorage.setItem('date_expiry', (now.getTime() + 24 * 60 * 60 * 1000).toString());
           localStorage.setItem('type_user', result.type_user);
           localStorage.setItem('utilisateur', JSON.stringify(result.utilisateur));
           localStorage.setItem('token', result.token);

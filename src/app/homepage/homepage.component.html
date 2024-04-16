@@ -1,4 +1,4 @@
-@if(isConnecter){
+@if(!isConnecter){
     <app-login></app-login>
 }@else{
     <mat-toolbar color="primary" class="mat-elevation-z8">
@@ -7,7 +7,11 @@
         </button>
         <span>Gestion des Assignements</span>
         <span class="example-spacer"></span>
-        <a mat-raised-button color="accent" (click)="onDeconnecter()">Déconnecter</a>
+        <button [matMenuTriggerFor]="profile" mat-button>  <mat-icon style="font-size:30px;height: 40px;width: 40px;">person</mat-icon></button>
+        <mat-menu #profile="matMenu">
+            <button  mat-menu-item routerLink="profile">Profile</button>
+            <button  mat-menu-item (click)="onDeconnecter()">Se déconnecter</button>
+        </mat-menu>
     </mat-toolbar>
     <mat-drawer-container autosize>
         <mat-drawer #drawer opened="true" mode="side" position="start">

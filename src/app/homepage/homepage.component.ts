@@ -33,7 +33,7 @@ import {MatDividerModule} from '@angular/material/divider';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit{
-  isConnecter = false;
+  isConnecter = true;
   badgeVisible = false;
 
   badgeVisibility() {
@@ -42,7 +42,7 @@ export class HomepageComponent implements OnInit{
 
   ngOnInit() {
     if(!localStorage.getItem("type_user")){
-      this.isConnecter=true
+      this.isConnecter=false
     }
   }
 
