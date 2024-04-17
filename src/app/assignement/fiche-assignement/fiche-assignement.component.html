@@ -86,7 +86,7 @@
       <mat-divider></mat-divider>
       <div class="div-action">
         <div class="btnList">
-          <button mat-flat-button color="accent" routerLink="/professeur/ajout">
+          <button mat-flat-button color="accent" (click)="goliste()">
             <mat-icon>arrow_back</mat-icon>Retour
           </button>
         </div>
@@ -96,9 +96,16 @@
           </button>
         </div>
         <div class="btnList">
-          <button mat-flat-button color="accent" routerLink="/professeur/ajout">
-            <mat-icon>list</mat-icon>Liste des assignements des élèves
-          </button>
+          <ng-container *ngIf="!voir; else nonVoir">
+            <button mat-flat-button color="accent" (click)="isAfficher()">
+              <mat-icon>remove_red_eye</mat-icon>Afficher les assignements des élèves
+            </button>
+          </ng-container>
+          <ng-template #nonVoir>
+            <button mat-flat-button color="warn" (click)="isAfficher()">
+              <mat-icon>visibility_off</mat-icon>Ne pas afficher les assignements des élèves
+            </button>
+          </ng-template>
         </div>
       </div>
     </mat-list>
@@ -108,4 +115,4 @@
 <br>
 <!--Liste des devoirs des élèves-->
 
-<app-detail-assignement [detailAssignementEleve]="detail"></app-detail-assignement>
+<app-detail-assignement [detailAssignementEleve]="detail" [assignement]="assignement" *ngIf="voir"></app-detail-assignement>

@@ -42,6 +42,7 @@ export class FicheAssignementComponent {
   detail: DetailAssignement[] | undefined;
   idAss: string = '';
   loading: Boolean = true;
+  voir=false;
 
   constructor(
     private assignementService: AssignementService,
@@ -65,4 +66,13 @@ export class FicheAssignementComponent {
         this.loading = false;
       });
   }
+
+  isAfficher(){
+    this.voir=!this.voir;
+  }
+
+  goliste(){
+    this.router.navigate(['/assignements']);
+  }
+
 }

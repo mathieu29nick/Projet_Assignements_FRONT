@@ -11,6 +11,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { DetailAssignement } from '../../../detail-assignement/detail-assignement.model';
+import { Assignement } from '../../assignement.model';
 
 @Component({
   selector: 'app-detail-assignement',
@@ -37,6 +38,7 @@ export class DetailAssignementComponent {
   loading: Boolean = true;
   displayedColumns: string[] = ['position','eleve','rendu','voir'];
   @Input() detailAssignementEleve: DetailAssignement[] | undefined;
+  @Input() assignement: Assignement | undefined;
   dataSource = new MatTableDataSource<DetailAssignement>();
 
   constructor(
@@ -52,6 +54,13 @@ export class DetailAssignementComponent {
     if (this.detailAssignementEleve) {
       this.dataSource.data = this.detailAssignementEleve;
     }
+  }
+
+  detail(assignement: DetailAssignement) {
+    this.router.navigate(['/detail-assignement'], { queryParams: { 
+      idEleve: assignement.idEleve, 
+      idAssignement : this.assignement?._id
+    } });
   }
   
 }

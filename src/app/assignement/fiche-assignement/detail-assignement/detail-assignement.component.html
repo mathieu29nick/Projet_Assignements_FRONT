@@ -36,7 +36,7 @@
                 <ng-container matColumnDef="voir">
                   <th mat-header-cell *matHeaderCellDef>Detail de son assignement</th>
                   <td mat-cell *matCellDef="let element">
-                    <button mat-flat-button color="primary">Detail</button>
+                    <button mat-flat-button color="primary" (click)="detail(element)">Detail</button>
                   </td>
                 </ng-container>
               
