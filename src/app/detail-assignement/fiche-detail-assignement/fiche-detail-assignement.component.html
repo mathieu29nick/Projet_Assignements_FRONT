@@ -129,7 +129,7 @@
             <mat-icon>check</mat-icon>Confirmer le rendu de devoir
           </button>
         </div>
-        <div class="btnList" *ngIf="detailAssignement.rendu">
+        <div class="btnList" *ngIf="detailAssignement.rendu && !detailAssignement.note">
           <button mat-flat-button color="warn" >
             <mat-icon>star</mat-icon>Noter le devoir
           </button>
