@@ -12,4 +12,8 @@ export class MatiereService {
     getMatieres = (idProf?: string) => {
         return this.http.get<Matiere[]>(api("Professeur/matieres"+ (idProf ? "?idProf="+idProf : "")));
     }
+
+    getAllMatieres = () => {
+      return this.http.get<Matiere[]>(api("Professeur/allmatieres?page=0&pageNumber=60"));
+  }
 }

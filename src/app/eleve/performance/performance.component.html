@@ -1,0 +1,70 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title class="login-title">Statistiques des élèves</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    @if(loading) {
+    <div class="parent-container">
+      <mat-spinner></mat-spinner>
+    </div>
+    } @else {
+    <mat-list>
+      <div class="performance">
+        <div class="filtre">
+          <mat-list>
+            <div mat-subheader>Filtre : </div>
+            <div style="display: flex; flex-wrap: wrap; margin-bottom: 20px">
+              <form>
+                <div style="display: flex; justify-content: space-between;">
+                  <mat-form-field class="full-width white">
+                    <mat-label>Elève</mat-label>
+                    <mat-select [(ngModel)]="eleveValue" name="eleve" (selectionChange)="onChangeEleve($event.value)">
+                      <mat-option [value]="">Tous...</mat-option>
+                      <ng-container *ngFor="let eleve of listeEleve">
+                        <mat-option [value]="eleve._id">{{ eleve.nom+" "+eleve.prenom }}</mat-option>
+                      </ng-container>
+                    </mat-select>
+                  </mat-form-field>
+                
+                  <mat-form-field class="full-width white">
+                    <mat-label>Matière</mat-label>
+                    <mat-select [(ngModel)]="matiereValue" name="matiere" (selectionChange)="onChangeMatiere($event.value)">
+                      <mat-option [value]="">Toutes...</mat-option>
+                      <ng-container *ngFor="let matiere of listeMatiere">
+                        <mat-option [value]="matiere._id">{{ matiere.libelle }}</mat-option>
+                      </ng-container>
+                    </mat-select>
+                  </mat-form-field>
+                
+                  <mat-form-field class="full-width white">
+                    <mat-label>Niveau</mat-label>
+                    <mat-select [(ngModel)]="niveauValue" name="niveau" (selectionChange)="onChangeNiveau($event.value)">
+                      <mat-option [value]="">Tous...</mat-option>
+                      <ng-container *ngFor="let niveau of listeNiveau">
+                        <mat-option [value]="niveau.idNiveau">{{ niveau.libelle }}</mat-option>
+                      </ng-container>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field class="full-width white">
+                    <mat-label>Ordre</mat-label>
+                    <mat-select [(ngModel)]="ordreValue" name="ordre" (selectionChange)="onChangeOrdre($event.value)">
+                        <mat-option [value]="">Par défaut</mat-option>
+                        <mat-option [value]="1">Croissant</mat-option>
+                        <mat-option [value]="-1">Décroissant</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </form>
+            </div>
+          </mat-list>
+        </div>
+        <div class="result">
+          <c-chart [data]="data" type="line" (chartRef)="handleChartRef($event)"></c-chart>
+        </div>
+      </div>
+    </mat-list>
+    }
+  </mat-card-content>
+</mat-card>
