@@ -11,6 +11,8 @@ import { AddAssignementComponent } from './assignement/add-assignement/add-assig
 import { ValiderDetailAssignementComponent } from './detail-assignement/valider-detail-assignement/valider-detail-assignement.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { PerformanceComponent } from './eleve/performance/performance.component';
+import { EleveComponent } from './utilisateur/eleve/eleve.component';
+import { AddEleveComponent } from './utilisateur/eleve/add-eleve/add-eleve.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -26,4 +28,6 @@ export const routes: Routes = [
     { path: 'valider-assignements-eleves', component: ValiderDetailAssignementComponent },
     { path: 'profile', component: UtilisateurComponent },
     { path: 'performance', component: PerformanceComponent },
+    { path: 'eleves', component: EleveComponent },
+    { path: 'eleve/ajout', component: AddEleveComponent },
 ];

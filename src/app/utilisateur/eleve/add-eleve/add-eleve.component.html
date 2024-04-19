@@ -1,0 +1,56 @@
+<div class="container">
+
+    <h1>Ajout d'un élève</h1>
+    <form
+      ngForm
+      #eleveForm
+      (submit)="onSubmit($event); eleveForm.reset()"
+      class="form"
+    >
+      <mat-form-field>
+        <mat-label>Nom de l'élève</mat-label>
+        <input
+          matInput
+          required
+          [(ngModel)]="nomEleve"
+          name="nom"
+          (input)="onInputChange()"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Prénom de l'élève</mat-label>
+        <input
+        matInput
+        required
+        [(ngModel)]="prenomEleve"
+        name="prenom"
+        (input)="onInputChange()"
+      />
+      </mat-form-field>
+    
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input
+        matInput
+        required
+        [(ngModel)]="emailEleve"
+        name="email"
+        (input)="onInputChange()"
+      />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Lien de l'image</mat-label>
+        <input
+        matInput
+        [(ngModel)]="photoEleve"
+        name="photo"
+        (input)="onInputChange()"
+      />
+      </mat-form-field>
+    
+      <mat-error *ngIf="error" class="error">{{error}}</mat-error>
+      
+    <button mat-raised-button [disabled]="nomEleve == '' || emailEleve == '' || prenomEleve == '' "> Ajouter</button>
+    </form>
+</div>
