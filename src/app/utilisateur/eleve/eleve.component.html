@@ -1,0 +1,59 @@
+@if(loading) {
+    <div class="parent-container">
+      <mat-spinner></mat-spinner>
+    </div>
+  } @else {
+  <div class="container">
+    <h2>Gestion des etudiants</h2>
+    <div class="btnAjout">
+      <button mat-flat-button color="accent" routerLink="/eleve/ajout">
+        <mat-icon>add</mat-icon>Ajouter un nouvel étudiant
+      </button>
+    </div>
+  
+  
+  
+    <table
+      mat-table
+      [dataSource]="eleves"
+      class="mat-elevation-z8 demo-table"
+    >
+      <ng-container matColumnDef="_id">
+        <th mat-header-cell *matHeaderCellDef>id</th>
+        <td mat-cell *matCellDef="let a">{{ a._id }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="nom">
+        <th mat-header-cell *matHeaderCellDef>Nom du professeur</th>
+        <td mat-cell *matCellDef="let a">{{ a.nom+" "+a.prenom }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let a">{{ a.email }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="photo">
+        <th mat-header-cell *matHeaderCellDef>Image</th>
+        <td mat-cell *matCellDef="let a"><img style="margin-left: 20px;" src="{{a.photo?a.photo:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRetK3z-l-tvWGrJwlKrM8_7Z8PZJLOGkqD1A&usqp=CAU'}}" width="35" alt="{{a.nom}}"></td>
+      </ng-container>
+  
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+      <mat-paginator
+        #paginator
+        class="demo-paginator"
+        (page)="handlePageEvent($event)"
+        [length]="length"
+        [pageSize]="limit"
+        [showFirstLastButtons]="true"
+        [pageSizeOptions]="[1,5, 10, 25,50]"
+        [pageIndex]="page"
+        aria-label="Select page"
+      >
+      </mat-paginator>
+  </div>
+  }
+  
