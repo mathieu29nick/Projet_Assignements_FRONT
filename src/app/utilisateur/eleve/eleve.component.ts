@@ -46,7 +46,7 @@ export class EleveComponent {
 
   getProfesseursFromService() {
     this.eleveService
-      .getAllEleves(this.limit, this.page)
+      .getAllElevesWithPagination(this.limit, this.page)
       .subscribe((data: any) => {
         this.eleves = data.data.data;
         this.totalPage = data.data.totalPage;
