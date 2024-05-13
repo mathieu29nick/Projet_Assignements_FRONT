@@ -13,6 +13,8 @@ import { DetailAssignementService } from '../../shared/detail-assignement.servic
 import { DetailAssignement } from '../detail-assignement.model';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Location } from '@angular/common';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { AddNoteComponent } from './add-note/add-note.component';
 
 @Component({
   selector: 'app-fiche-detail-assignement',
@@ -46,9 +48,10 @@ export class FicheDetailAssignementComponent {
   constructor(
     private detailAssignementService: DetailAssignementService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private router: Router,
+    private dialog: MatDialog
   ) {}
-
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.idAss = params['idAssignement'];
@@ -94,5 +97,11 @@ export class FicheDetailAssignementComponent {
 
   retourPagePrecedente(): void {
     this.location.back();
+  }
+
+  ajoutNote(idAss : string|undefined,idEleve : string|undefined) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data={ assignement : idAss,eleve:idEleve}
+    this.dialog.open(AddNoteComponent,dialogConfig);
   }
 }

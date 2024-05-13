@@ -64,4 +64,20 @@ export class ProfesseurService {
         }
       });
     }
+
+    ajoutNote(idAss: string | undefined,idEleve: string | undefined, note: string,remarque: string): Promise<any> {
+      return new Promise((resolve, reject) => {
+        if (!note || note === '' || note ==null) {
+          reject(new Error("Veuillez saisir une note"));
+        } else {
+          this.http.put(api("Professeur/assignementNoteModifier/"+idAss+"/"+idEleve), { note: note, remarque: remarque }).toPromise()
+            .then((result: any) => {
+              resolve(result);
+            })
+            .catch((error: any) => {
+              reject(error);
+            });
+        }
+      });
+    }
 }

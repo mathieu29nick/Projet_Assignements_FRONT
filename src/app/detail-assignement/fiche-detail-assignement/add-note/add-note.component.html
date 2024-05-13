@@ -1,0 +1,33 @@
+
+<div class="container">
+    <h2 mat-dialog-title>Ajouter une note et une remarque</h2>
+    <mat-dialog-content>
+        <form ngForm #noteForm class="form" (submit)="onSubmit($event); noteForm.reset()">
+        <mat-form-field>
+            <mat-label>Note</mat-label>
+            <input
+            matInput
+            required
+            type="number"
+            (input)="checkValue($event)"
+            name="note"
+            [(ngModel)]="noteValue"
+            />
+        </mat-form-field>
+    
+        <mat-form-field>
+            <mat-label>Remarque</mat-label>
+            <input
+            matInput
+            required
+            name="remarque"
+            [(ngModel)]="remarqueValue"
+            (input)="onInputChange()"
+        />
+        </mat-form-field>
+
+        <mat-error *ngIf="error" class="error">{{error}}</mat-error>
+        <button mat-raised-button [disabled]="noteValue == null || remarqueValue == ''">Valider</button>
+    </form>
+    </mat-dialog-content>
+</div>
