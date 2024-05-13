@@ -22,7 +22,7 @@
                     <mat-select [(ngModel)]="eleveValue" name="eleve" (selectionChange)="onChangeEleve($event.value)">
                       <mat-option [value]="">Tous...</mat-option>
                       <ng-container *ngFor="let eleve of listeEleve">
-                        <mat-option [value]="eleve._id">{{ eleve.nom+" "+eleve.prenom }}</mat-option>
+                        <mat-option [value]="eleve._id"><mat-icon>person</mat-icon>{{ eleve.nom+" "+eleve.prenom }}</mat-option>
                       </ng-container>
                     </mat-select>
                   </mat-form-field>
@@ -32,7 +32,7 @@
                     <mat-select [(ngModel)]="matiereValue" name="matiere" (selectionChange)="onChangeMatiere($event.value)">
                       <mat-option [value]="">Toutes...</mat-option>
                       <ng-container *ngFor="let matiere of listeMatiere">
-                        <mat-option [value]="matiere._id">{{ matiere.libelle }}</mat-option>
+                        <mat-option [value]="matiere._id"><mat-icon>assignment</mat-icon>{{ matiere.libelle }}</mat-option>
                       </ng-container>
                     </mat-select>
                   </mat-form-field>
@@ -42,7 +42,7 @@
                     <mat-select [(ngModel)]="niveauValue" name="niveau" (selectionChange)="onChangeNiveau($event.value)">
                       <mat-option [value]="">Tous...</mat-option>
                       <ng-container *ngFor="let niveau of listeNiveau">
-                        <mat-option [value]="niveau.idNiveau">{{ niveau.libelle }}</mat-option>
+                        <mat-option [value]="niveau.idNiveau"><mat-icon>extension</mat-icon>{{ niveau.libelle }}</mat-option>
                       </ng-container>
                     </mat-select>
                   </mat-form-field>
@@ -51,8 +51,8 @@
                     <mat-label>Ordre</mat-label>
                     <mat-select [(ngModel)]="ordreValue" name="ordre" (selectionChange)="onChangeOrdre($event.value)">
                         <mat-option [value]="">Par défaut</mat-option>
-                        <mat-option [value]="1">Croissant</mat-option>
-                        <mat-option [value]="-1">Décroissant</mat-option>
+                        <mat-option [value]="1"><mat-icon>trending_up</mat-icon>Croissant</mat-option>
+                        <mat-option [value]="-1"><mat-icon>trending_down</mat-icon>Décroissant</mat-option>
                     </mat-select>
                   </mat-form-field>
                 </div>
