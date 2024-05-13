@@ -130,7 +130,7 @@
           </button>
         </div>
         <div class="btnList" *ngIf="detailAssignement.rendu && !detailAssignement.note">
-          <button mat-flat-button color="warn" >
+          <button mat-flat-button color="warn" (click)="ajoutNote(detailAssignement.idAssignement,detailAssignement.idEleve)">
             <mat-icon>star</mat-icon>Noter le devoir
           </button>
         </div>
