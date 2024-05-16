@@ -13,6 +13,7 @@ import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { PerformanceComponent } from './eleve/performance/performance.component';
 import { EleveComponent } from './utilisateur/eleve/eleve.component';
 import { AddEleveComponent } from './utilisateur/eleve/add-eleve/add-eleve.component';
+import { DevoirTriComponent } from './eleve/devoir-tri/devoir-tri.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -30,4 +31,5 @@ export const routes: Routes = [
     { path: 'performance', component: PerformanceComponent },
     { path: 'eleves', component: EleveComponent },
     { path: 'eleve/ajout', component: AddEleveComponent },
+    { path: 'mes-assignements', component: DevoirTriComponent },
 ];

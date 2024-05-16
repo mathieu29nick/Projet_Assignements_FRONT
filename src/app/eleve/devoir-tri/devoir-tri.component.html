@@ -1,0 +1,132 @@
+<mat-card>
+    <mat-card-header>
+      <mat-card-title class="login-title">Mes devoirs</mat-card-title>
+    </mat-card-header>
+  
+    <mat-card-content>
+      @if(loading) {
+      <div class="parent-container">
+        <mat-spinner></mat-spinner>
+      </div>
+      } @else {
+      <mat-list>
+        <div class="listeAssignement">
+          <div class="filtre">
+            <mat-list>
+              <div mat-subheader>Filtre : </div>
+              <div style="display: flex; flex-wrap: wrap; margin-bottom: 20px">
+                <form>
+                  <div style="display: flex; justify-content: space-between;">
+                    <mat-form-field class="full-width white">
+                      <mat-label>Matière</mat-label>
+                      <mat-select [(ngModel)]="matiereValue" name="matiere" (selectionChange)="onChangeMatiere($event.value)">
+                        <mat-option [value]="">Toutes...</mat-option>
+                        <ng-container *ngFor="let matiere of listeMatiere">
+                          <mat-option [value]="matiere._id"><mat-icon class="mat-icon-color-blue">assignment</mat-icon>{{ matiere.libelle }}</mat-option>
+                        </ng-container>
+                      </mat-select>
+                    </mat-form-field>
+                  
+                    <mat-form-field class="full-width white">
+                      <mat-label>Niveau</mat-label>
+                      <mat-select [(ngModel)]="niveauValue" name="niveau" (selectionChange)="onChangeNiveau($event.value)">
+                        <mat-option [value]="">Tous...</mat-option>
+                        <ng-container *ngFor="let niveau of listeNiveau">
+                          <mat-option [value]="niveau.idNiveau"><mat-icon class="mat-icon-color-blue">extension</mat-icon>{{ niveau.libelle }}</mat-option>
+                        </ng-container>
+                      </mat-select>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="full-width white">
+                        <mat-label>Etat</mat-label>
+                        <mat-select [(ngModel)]="etatValue" name="etat" (selectionChange)="onChangeEtat($event.value)">
+                            <mat-option [value]="">Tous...</mat-option>
+                            <mat-option [value]="0"><mat-icon class="mat-icon-color-green">done</mat-icon>Rendu</mat-option>
+                            <mat-option [value]="1"><mat-icon class="mat-icon-color-red">hourglass_empty</mat-icon>Non rendu</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width white">
+                      <mat-label>Rendu le</mat-label>
+                      <mat-select [(ngModel)]="ordreValue" name="ordre" (selectionChange)="onChangeOrdre($event.value)">
+                          <mat-option [value]="">Par défaut</mat-option>
+                          <mat-option [value]="1"><mat-icon class="mat-icon-color-green">trending_up</mat-icon>Croissant</mat-option>
+                          <mat-option [value]="-1"><mat-icon class="mat-icon-color-red">trending_down</mat-icon>Décroissant</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                  </div>
+                </form>
+              </div>
+            </mat-list>
+          </div>
+          <div class="container">
+            <div mat-subheader>Résultats :</div>
+            <mat-paginator
+                #paginator
+                class="demo-paginator"
+                (page)="handlePageEvent($event)"
+                [length]="length"
+                [pageSize]="limit"
+                [showFirstLastButtons]="true"
+                [pageSizeOptions]="[1,5, 10, 25,50]"
+                [pageIndex]="page"
+                aria-label="Select page"
+            >
+            </mat-paginator>
+            <table
+            mat-table
+            [dataSource]="data"
+            class="mat-elevation-z8 demo-table"
+        >
+            <ng-container matColumnDef="_id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let a">{{ a.idAssignement }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="eleve">
+            <th mat-header-cell *matHeaderCellDef>Eleve</th>
+            <td mat-cell *matCellDef="let a">{{ a.eleve }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="nomAssignement">
+            <th mat-header-cell *matHeaderCellDef>Libellé</th>
+            <td mat-cell *matCellDef="let a"><strong class="mat-icon-color-blue">{{ a.assignement }}</strong></td>
+            </ng-container>
+
+            <ng-container matColumnDef="matiere">
+            <th mat-header-cell *matHeaderCellDef>Matière</th>
+            <td mat-cell *matCellDef="let a">{{ a.matiere }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="niveau">
+            <th mat-header-cell *matHeaderCellDef>Niveau</th>
+            <td mat-cell *matCellDef="let a">{{ a.niveau }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="dateRenduEleve">
+            <th mat-header-cell *matHeaderCellDef>Rendu le</th>
+            <td mat-cell *matCellDef="let a">
+                <p *ngIf="a.dateRenduEleve">{{ a.dateRenduEleve | date:'yyyy/MM/dd' }}</p>
+                <p *ngIf="!a.rendu">--</p>
+            </td>
+            </ng-container>
+
+            <ng-container matColumnDef="statut">
+            <th mat-header-cell *matHeaderCellDef>Statut</th>
+            <td mat-cell *matCellDef="let a">
+                <p *ngIf="a.rendu" class="mat-icon-color-green">RENDU</p>
+                <p *ngIf="!a.rendu" class="mat-icon-color-red">Non RENDU</p>
+            </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        </div>
+        </div>
+      </mat-list>
+      }
+    </mat-card-content>
+  </mat-card>
+  

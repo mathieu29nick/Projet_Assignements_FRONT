@@ -52,7 +52,7 @@
             <mat-icon matListItemIcon>calendar_today</mat-icon>
             <div matListItemTitle>Délai</div>
             <div matListItemLine class="list-desc">
-              {{ assignement.dateRendu }}
+              {{ assignement.dateRendu | date:'yyyy/MM/dd' }}
             </div>
           </mat-list-item>
         </div>
