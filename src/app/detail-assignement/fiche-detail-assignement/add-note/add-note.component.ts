@@ -56,7 +56,7 @@ export class AddNoteComponent {
     this.error = '';
   }
 
-  onSubmit(event: any) {
+  onSubmit(event: any) { 
     if (this.noteValue == null || this.remarqueValue === '' || this.noteValue=='') return;
 
     this.professeurService.ajoutNote(this.data.assignement,this.data.eleve,this.noteValue,this.remarqueValue)
