@@ -75,4 +75,10 @@ export class FicheAssignementComponent {
     this.router.navigate(['/assignements']);
   }
 
+  modifier(assignement: Assignement) {
+    this.router.navigate(['/assignement/modification'], { queryParams: { 
+      idAssignement : assignement._id
+    } });
+  }
+
 }

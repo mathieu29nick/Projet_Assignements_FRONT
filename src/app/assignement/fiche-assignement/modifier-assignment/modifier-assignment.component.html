@@ -1,0 +1,70 @@
+<mat-card>
+    <mat-card-header>
+      <mat-card-title class="login-title">Modification Assignement</mat-card-title>
+    </mat-card-header>
+    <br>
+    <mat-card-content>
+        @if(loading) {
+            <div class="parent-container">
+                <mat-spinner></mat-spinner>
+              </div>
+        } @else {
+            <form
+            ngForm
+            #assignementForm
+            class="form"
+            (submit)="onSubmit($event); assignementForm.reset()"
+            >
+            <mat-form-field>
+                <mat-label>ID</mat-label>
+                <input
+                matInput
+                name="id"
+                [value]="assignement._id"
+                [(ngModel)]="assignement._id"
+                />
+            </mat-form-field>
+            
+            <mat-form-field>
+                <mat-label>Libelle</mat-label>
+                <input
+                matInput
+                name="libelle"
+                (input)="onInputChange()"
+                [value]="assignement.nomAssignement"
+                [(ngModel)]="assignement.nomAssignement"
+            />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <input
+                matInput
+                name="desc"
+                [value]="assignement.description"
+                (input)="onInputChange()"
+                [(ngModel)]="assignement.description"
+            />
+            </mat-form-field>
+
+            <mat-form-field class="full-width white">
+                <mat-label>Date de rendu</mat-label>
+                <input
+                matInput
+                [matDatepicker]="picker"
+                name="dateRendu"
+                (input)="onInputChange()"
+                [(ngModel)]="assignement.dateRendu"
+                [value]="assignement.dateRendu"
+                />
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            
+            <mat-error *ngIf="error" class="error">{{error}}</mat-error>
+            <br>
+            <button mat-raised-button>VALIDER</button>
+            </form>
+        }
+
+

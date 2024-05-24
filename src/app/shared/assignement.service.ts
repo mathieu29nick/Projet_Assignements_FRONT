@@ -34,4 +34,21 @@ export class AssignementService {
       api('Professeur/assignements/assignement?idAssignement=' + idAss)
     );
   };
+
+  modifierAssignement(idAss: string | undefined,libelle: string | undefined, description: string | undefined,dateRendu: string | undefined): Promise<any> { 
+    return new Promise((resolve, reject) => {
+        this.http.put(api("Professeur/modificationAssigmentMatiere/"+idAss),
+        {
+          nomAssignement: libelle,
+          description: description,
+          dateRendu: dateRendu
+        }).toPromise()
+          .then((result: any) => {
+            resolve(result);
+          })
+          .catch((error: any) => {
+            reject(error);
+          });
+    });
+  }
 }
