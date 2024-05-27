@@ -78,5 +78,10 @@
     --mat-form-field-focus-state-layer-opacity: 0;
   }
 
+  .performance-format{
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
   
 

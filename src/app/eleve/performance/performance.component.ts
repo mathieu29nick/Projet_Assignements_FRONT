@@ -19,6 +19,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { Performance } from '../Perfomance';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatTable, MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-performance',
@@ -41,7 +43,10 @@ import { Performance } from '../Perfomance';
     FormsModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatSlideToggleModule,
+    MatTable,
+    MatTableModule
   ],
   standalone :true
 })
@@ -60,6 +65,12 @@ export class PerformanceComponent {
   niveauValue: string="";
   ordreValue: string="";
 
+  /* Toggle */
+  isTB = false;
+
+  /* Tableau de bord */
+  displayedColumns: string[] = ['_id','moyenne'];
+
   constructor(
     private matiereService: MatiereService,
     private router: Router,
@@ -73,6 +84,7 @@ export class PerformanceComponent {
     this.getNiveau();
     this.getEleve();
     this.getPerformance();
+    console.log(this.performance[0]._id+"/"+this.performance[0].moyenne)
   }
 
   getMatiere() {
