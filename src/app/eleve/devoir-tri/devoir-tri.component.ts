@@ -145,6 +145,7 @@ export class DevoirTriComponent {
       .subscribe((data: any) => {
         this.data = data.data.liste;
         this.totalPage = data.data.totalPage;
+        this.length = data.data.dataLength;
         this.page = Number(data.data.page);
         this.limit = Number(data.data.pageNumber);
         this.loading = false;
