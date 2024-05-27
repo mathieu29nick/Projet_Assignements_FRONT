@@ -15,23 +15,24 @@ import { EleveComponent } from './utilisateur/eleve/eleve.component';
 import { AddEleveComponent } from './utilisateur/eleve/add-eleve/add-eleve.component';
 import { DevoirTriComponent } from './eleve/devoir-tri/devoir-tri.component';
 import { ModifierAssignmentComponent } from './assignement/fiche-assignement/modifier-assignment/modifier-assignment.component';
+import { AuthGuard } from './shared/auth.guard';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'homepage', component: HomepageComponent },
-    { path: 'professeurs', component: ProfesseurComponent },
-    { path: 'professeur/ajout', component: AddProfesseurComponent },
-    { path: 'professeur/matieres', component: MatiereComponent },
-    { path: 'assignements', component: AssignementComponent },
-    { path: 'assignement', component: FicheAssignementComponent },
-    { path: 'detail-assignement', component: FicheDetailAssignementComponent },
-    { path: 'assignement/ajout-assignement', component: AddAssignementComponent },
-    { path: 'valider-assignements-eleves', component: ValiderDetailAssignementComponent },
-    { path: 'profile', component: UtilisateurComponent },
-    { path: 'performance', component: PerformanceComponent },
-    { path: 'eleves', component: EleveComponent },
-    { path: 'eleve/ajout', component: AddEleveComponent },
-    { path: 'mes-assignements', component: DevoirTriComponent },
-    { path : 'assignement/modification', component : ModifierAssignmentComponent}
+    { path: 'professeurs', component: ProfesseurComponent , canActivate: [AuthGuard]},
+    { path: 'professeur/ajout', component: AddProfesseurComponent , canActivate: [AuthGuard]},
+    { path: 'professeur/matieres', component: MatiereComponent , canActivate: [AuthGuard]},
+    { path: 'assignements', component: AssignementComponent , canActivate: [AuthGuard]},
+    { path: 'assignement', component: FicheAssignementComponent , canActivate: [AuthGuard]},
+    { path: 'detail-assignement', component: FicheDetailAssignementComponent , canActivate: [AuthGuard]},
+    { path: 'assignement/ajout-assignement', component: AddAssignementComponent , canActivate: [AuthGuard]},
+    { path: 'valider-assignements-eleves', component: ValiderDetailAssignementComponent , canActivate: [AuthGuard]},
+    { path: 'profile', component: UtilisateurComponent , canActivate: [AuthGuard]},
+    { path: 'performance', component: PerformanceComponent , canActivate: [AuthGuard]},
+    { path: 'eleves', component: EleveComponent , canActivate: [AuthGuard]},
+    { path: 'eleve/ajout', component: AddEleveComponent , canActivate: [AuthGuard]},
+    { path: 'mes-assignements', component: DevoirTriComponent , canActivate: [AuthGuard]},
+    { path : 'assignement/modification', component : ModifierAssignmentComponent, canActivate: [AuthGuard]}
 ];

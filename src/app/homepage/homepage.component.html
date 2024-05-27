@@ -16,34 +16,12 @@
     <mat-drawer-container autosize>
         <mat-drawer #drawer opened="true" mode="side" position="start">
         <mat-nav-list>
-            <mat-list-item>
-                <button routerLink="/professeurs" mat-button><mat-icon>list</mat-icon>Gestion des professeurs</button>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>
-                <button routerLink="/assignements" mat-button><mat-icon>list</mat-icon>Liste des assignements</button>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>
-                <button routerLink="assignement/ajout-assignement" mat-button><mat-icon>add_note</mat-icon>Ajout d'un nouveau assignement</button>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>
-                <button routerLink="valider-assignements-eleves" mat-button><mat-icon>check</mat-icon>Valider des devoirs rendus</button>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>
-                <button routerLink="/performance" mat-button><mat-icon>bar_chart</mat-icon>Performance d'un élève</button>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>
-                <button routerLink="eleves" mat-button><mat-icon>person</mat-icon>Gestion des étudiants</button>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>
-                <button routerLink="mes-assignements" mat-button><mat-icon>description</mat-icon>Mes assignements</button>
-            </mat-list-item>
-            <mat-divider></mat-divider>
+            <div *ngFor="let item of menuItems">
+                <mat-list-item>
+                    <button routerLink="{{item.path}}" mat-button><mat-icon>{{item.icon}}</mat-icon>{{item.label}}</button>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+            </div>
         </mat-nav-list>
         </mat-drawer>
         <mat-drawer-content>

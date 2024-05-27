@@ -8,6 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { LoginService } from '../shared/login.service';
 import { RouterLink } from '@angular/router';
 import { Router, RouterOutlet } from '@angular/router';
+import { AuthService } from '../shared/auth.service';
+import { Roles } from '../shared/roles';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +25,7 @@ export class LoginComponent {
     emailFormControl: FormControl;
     passwordFormControl: FormControl;
   
-    constructor(private loginService: LoginService,private router: Router) {
+    constructor(private authService: AuthService,private loginService: LoginService,private router: Router) {
       this.emailFormControl = new FormControl('', [Validators.required]);
       this.passwordFormControl = new FormControl('', [Validators.required]);
     }
@@ -38,11 +40,17 @@ export class LoginComponent {
           this.error = "";
           const now = new Date();
           localStorage.setItem('date_expiry', (now.getTime() + 24 * 60 * 60 * 1000).toString());
+          this.authService.setUserRole(result.type_user);
           localStorage.setItem('type_user', result.type_user);
           localStorage.setItem('utilisateur', JSON.stringify(result.utilisateur));
           localStorage.setItem('token', result.token);
-          location.reload();
-          this.router.navigate(['/professeurs']);
+          if(this.authService.getUserRole() === Roles.ADMIN){
+            this.router.navigate(['/performance']);
+          }else if(this.authService.getUserRole() === Roles.PROF){
+            this.router.navigate(['/assignements']);
+          }else{
+            this.router.navigate(['/mes-assignements']);
+          }
         })
         .catch((error: any) => {
           this.error = error.error ? error.error.message : error.message;
