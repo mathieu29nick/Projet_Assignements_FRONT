@@ -11,6 +11,9 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { LoginComponent } from '../login/login.component';
 import { MatCardModule } from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
+import { AuthService } from '../shared/auth.service';
+import { Roles } from '../shared/roles';
+import { MenuService } from '../shared/menu.service';
 
 @Component({
   selector: 'app-homepage',
@@ -35,17 +38,20 @@ import {MatDividerModule} from '@angular/material/divider';
 export class HomepageComponent implements OnInit{
   isConnecter = true;
   badgeVisible = false;
+  menuItems: { path: string, label: string, icon: string }[] = [];
+
+  constructor(private authService: AuthService,private menuService: MenuService){}
 
   badgeVisibility() {
     this.badgeVisible = true;
   }
 
   ngOnInit() {
-    if(!localStorage.getItem("type_user")){
+    if(this.authService.getUserRole() === Roles.DEFAULT){
       this.isConnecter=false
     }
+    this.menuItems = this.menuService.getMenuItems();
   }
-
   onDeconnecter(){
     localStorage.clear();
     location.reload();
