@@ -1,8 +1,12 @@
 <mat-card>
   <mat-card-header>
+    @if(role === 'etudiant') {
     <mat-card-title 
+      >Fiche de mon devoir</mat-card-title
+    >} @else { <mat-card-title 
       >Fiche Detail Assignement</mat-card-title
     >
+    }
   </mat-card-header>
 
   <mat-card-content>
@@ -13,6 +17,18 @@
     } @else {
     <mat-list>
       <div mat-subheader>Information</div>
+      @if(role === 'etudiant') {
+        <div class="list-info" style="margin-bottom: 20px">
+          <mat-list-item>
+            <mat-icon matListItemIcon>info</mat-icon>
+            <div matListItemTitle>Description du devoir</div>
+            <div matListItemLine class="list-desc">
+              {{ detailAssignement.description }}
+            </div>
+          </mat-list-item>
+        </div>
+        <mat-divider></mat-divider>
+      }
       <div style="display: flex; flex-wrap: wrap; margin-bottom: 20px">
         <div class="list-info">
           <mat-list-item>
@@ -119,17 +135,17 @@
             <mat-icon>arrow_back</mat-icon>Retour
           </button>
         </div>
-        <div class="btnModif" *ngIf="!detailAssignement.dateRenduEleve">
+        <div class="btnModif" *ngIf="!detailAssignement.dateRenduEleve && role === 'etudiant'">
             <button mat-raised-button (click)="rendreDevoir()" color="accent">
             <mat-icon>arrow_upward</mat-icon>Rendre le devoir
           </button>
         </div>
-        <div class="btnList" *ngIf="detailAssignement.dateRenduEleve && !detailAssignement.rendu">
+        <div class="btnList" *ngIf="detailAssignement.dateRenduEleve && !detailAssignement.rendu && role === 'prof'">
           <button mat-flat-button style="background-color: darkgreen;color: white;" (click)="validerDevoir()" >
             <mat-icon>check</mat-icon>Confirmer le rendu de devoir
           </button>
         </div>
-        <div class="btnList" *ngIf="detailAssignement.rendu && !detailAssignement.note">
+        <div class="btnList" *ngIf="detailAssignement.rendu && !detailAssignement.note && role === 'prof'">
           <button mat-flat-button color="warn" (click)="ajoutNote(detailAssignement.idAssignement,detailAssignement.idEleve)">
             <mat-icon>star</mat-icon>Noter le devoir
           </button>

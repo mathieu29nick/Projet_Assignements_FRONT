@@ -18,7 +18,7 @@ export class EleveService {
       return this.http.get<Eleve[]>(api("Eleve/"));
     }
 
-    getPerformance = (idEleve: String, idMatiere: String,idNiveau:String,order:String) => {
+    getPerformance = (idEleve: String|undefined, idMatiere: String,idNiveau:String,order:String) => {
         idEleve = idEleve ?? "";
         idMatiere = idMatiere ?? "";
         idNiveau = idNiveau ?? "";

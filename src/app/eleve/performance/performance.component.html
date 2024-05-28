@@ -1,6 +1,10 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title class="login-title">Statistiques des élèves</mat-card-title>
+    @if(role === 'etudiant') {
+    <mat-card-title class="login-title">Ma performance</mat-card-title>
+      } @else { 
+        <mat-card-title class="login-title">Statistiques des élèves</mat-card-title>
+      }
   </mat-card-header>
 
   <mat-card-content>
@@ -19,10 +23,20 @@
                 <div style="display: flex; justify-content: space-between;">
                   <mat-form-field class="full-width white">
                     <mat-label>Elève</mat-label>
-                    <mat-select [(ngModel)]="eleveValue" name="eleve" (selectionChange)="onChangeEleve($event.value)">
+                    <mat-select [(ngModel)]="eleveValue" name="eleve" (selectionChange)="onChangeEleve($event.value)" [disabled]="role === 'etudiant'">
                       <mat-option [value]="">Tous...</mat-option>
                       <ng-container *ngFor="let eleve of listeEleve">
                         <mat-option [value]="eleve._id"><mat-icon>person</mat-icon>{{ eleve.nom+" "+eleve.prenom }}</mat-option>
+                      </ng-container>
+                    </mat-select>
+                  </mat-form-field>
+                  
+                  <mat-form-field class="full-width white">
+                    <mat-label>Niveau</mat-label>
+                    <mat-select [(ngModel)]="niveauValue" name="niveau" (selectionChange)="onChangeNiveau($event.value)">
+                      <mat-option [value]="">Tous...</mat-option>
+                      <ng-container *ngFor="let niveau of listeNiveau">
+                        <mat-option [value]="niveau.idNiveau"><mat-icon>extension</mat-icon>{{ niveau.libelle }}</mat-option>
                       </ng-container>
                     </mat-select>
                   </mat-form-field>
@@ -37,15 +51,6 @@
                     </mat-select>
                   </mat-form-field>
                 
-                  <mat-form-field class="full-width white">
-                    <mat-label>Niveau</mat-label>
-                    <mat-select [(ngModel)]="niveauValue" name="niveau" (selectionChange)="onChangeNiveau($event.value)">
-                      <mat-option [value]="">Tous...</mat-option>
-                      <ng-container *ngFor="let niveau of listeNiveau">
-                        <mat-option [value]="niveau.idNiveau"><mat-icon>extension</mat-icon>{{ niveau.libelle }}</mat-option>
-                      </ng-container>
-                    </mat-select>
-                  </mat-form-field>
 
                   <mat-form-field class="full-width white">
                     <mat-label>Ordre</mat-label>

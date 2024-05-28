@@ -21,6 +21,8 @@ import { MatInputModule } from '@angular/material/input';
 import { Performance } from '../Perfomance';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MatTable, MatTableModule } from '@angular/material/table';
+import { AuthService } from '../../shared/auth.service';
+import { Utilisateur } from '../../utilisateur/utilisateur.model';
 
 @Component({
   selector: 'app-performance',
@@ -57,10 +59,12 @@ export class PerformanceComponent {
   listeEleve: Eleve[] = [];
   performance: Performance[]=[];
   loading: boolean = true;
+  role: string = '';
+  utilisateur : Utilisateur = {};
   @Input() data: any;
 
   /* Form */
-  eleveValue: string="";
+  eleveValue: string|undefined="";
   matiereValue: string="";
   niveauValue: string="";
   ordreValue: string="";
@@ -76,10 +80,23 @@ export class PerformanceComponent {
     private router: Router,
     private route: ActivatedRoute,
     private niveauService : NiveauService,
-    private eleveService : EleveService
+    private eleveService : EleveService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
+    this.role = this.authService.getUserRole();
+    let user = localStorage.getItem("utilisateur");
+    if (user) {
+        try {
+            this.utilisateur = JSON.parse(user);
+        } catch (error) {
+          this.router.navigate(['/login']);
+        }
+    }
+    if(this.role === 'etudiant'){
+      this.eleveValue = this.utilisateur._id ?? this.utilisateur._id ;
+    }
     this.getMatiere();
     this.getNiveau();
     this.getEleve();
@@ -89,7 +106,7 @@ export class PerformanceComponent {
 
   getMatiere() {
     this.matiereService
-      .getAllMatieres()
+      .getAllMatieres(this.niveauValue)
       .subscribe((data: any) => {
         this.listeMatiere = data.data.liste;
         this.loading = false;
@@ -150,6 +167,7 @@ export class PerformanceComponent {
 
   onChangeNiveau(value:any){
     this.niveauValue=value;
+    this.getMatiere();
     this.getPerformance();
   }
 

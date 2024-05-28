@@ -10,4 +10,5 @@ export class DetailAssignement {
   assignement?: string;
   dateRendu?: Date;
   idAssignement?: string;
+  description?: string;
 }

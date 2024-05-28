@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Location } from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
 import { FormControl, FormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,7 +26,7 @@ export class LoginComponent {
     emailFormControl: FormControl;
     passwordFormControl: FormControl;
   
-    constructor(private authService: AuthService,private loginService: LoginService,private router: Router) {
+    constructor( private location: Location,private authService: AuthService,private loginService: LoginService,private router: Router) {
       this.emailFormControl = new FormControl('', [Validators.required]);
       this.passwordFormControl = new FormControl('', [Validators.required]);
     }
@@ -45,12 +46,13 @@ export class LoginComponent {
           localStorage.setItem('utilisateur', JSON.stringify(result.utilisateur));
           localStorage.setItem('token', result.token);
           if(this.authService.getUserRole() === Roles.ADMIN){
-            this.router.navigate(['/performance']);
+            this.location.go('/performance');
           }else if(this.authService.getUserRole() === Roles.PROF){
-            this.router.navigate(['/assignements']);
+            this.location.go('/assignements');
           }else{
-            this.router.navigate(['/mes-assignements']);
+            this.location.go('/mes-assignements');
           }
+          location.reload();
         })
         .catch((error: any) => {
           this.error = error.error ? error.error.message : error.message;

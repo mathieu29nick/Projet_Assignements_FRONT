@@ -18,16 +18,6 @@
                 <form>
                   <div style="display: flex; justify-content: space-between;">
                     <mat-form-field class="full-width white">
-                      <mat-label>Matière</mat-label>
-                      <mat-select [(ngModel)]="matiereValue" name="matiere" (selectionChange)="onChangeMatiere($event.value)">
-                        <mat-option [value]="">Toutes...</mat-option>
-                        <ng-container *ngFor="let matiere of listeMatiere">
-                          <mat-option [value]="matiere._id"><mat-icon class="mat-icon-color-blue">assignment</mat-icon>{{ matiere.libelle }}</mat-option>
-                        </ng-container>
-                      </mat-select>
-                    </mat-form-field>
-                  
-                    <mat-form-field class="full-width white">
                       <mat-label>Niveau</mat-label>
                       <mat-select [(ngModel)]="niveauValue" name="niveau" (selectionChange)="onChangeNiveau($event.value)">
                         <mat-option [value]="">Tous...</mat-option>
@@ -36,7 +26,15 @@
                         </ng-container>
                       </mat-select>
                     </mat-form-field>
-                    
+                    <mat-form-field class="full-width white">
+                      <mat-label>Matière</mat-label>
+                      <mat-select [(ngModel)]="matiereValue" name="matiere" (selectionChange)="onChangeMatiere($event.value)">
+                        <mat-option [value]="">Toutes...</mat-option>
+                        <ng-container *ngFor="let matiere of listeMatiere">
+                          <mat-option [value]="matiere._id"><mat-icon class="mat-icon-color-blue">assignment</mat-icon>{{ matiere.libelle }}</mat-option>
+                        </ng-container>
+                      </mat-select>
+                    </mat-form-field>
                     <mat-form-field class="full-width white">
                         <mat-label>Etat</mat-label>
                         <mat-select [(ngModel)]="etatValue" name="etat" (selectionChange)="onChangeEtat($event.value)">
@@ -47,7 +45,7 @@
                     </mat-form-field>
 
                     <mat-form-field class="full-width white">
-                      <mat-label>Rendu le</mat-label>
+                      <mat-label>Deadline</mat-label>
                       <mat-select [(ngModel)]="ordreValue" name="ordre" (selectionChange)="onChangeOrdre($event.value)">
                           <mat-option [value]="">Par défaut</mat-option>
                           <mat-option [value]="1"><mat-icon class="mat-icon-color-green">trending_up</mat-icon>Croissant</mat-option>
@@ -79,15 +77,8 @@
             [dataSource]="data"
             class="mat-elevation-z8 demo-table"
         >
-            <ng-container matColumnDef="_id">
-            <th mat-header-cell *matHeaderCellDef>ID</th>
-            <td mat-cell *matCellDef="let a">{{ a.idAssignement }}</td>
-            </ng-container>
+           
 
-            <ng-container matColumnDef="eleve">
-            <th mat-header-cell *matHeaderCellDef>Eleve</th>
-            <td mat-cell *matCellDef="let a">{{ a.eleve }}</td>
-            </ng-container>
 
             <ng-container matColumnDef="nomAssignement">
             <th mat-header-cell *matHeaderCellDef>Libellé</th>
@@ -104,11 +95,11 @@
             <td mat-cell *matCellDef="let a">{{ a.niveau }}</td>
             </ng-container>
 
-            <ng-container matColumnDef="dateRenduEleve">
-            <th mat-header-cell *matHeaderCellDef>Rendu le</th>
+            <ng-container matColumnDef="deadline">
+            <th mat-header-cell *matHeaderCellDef>Deadline</th>
             <td mat-cell *matCellDef="let a">
-                <p *ngIf="a.dateRenduEleve">{{ a.dateRenduEleve | date:'yyyy/MM/dd' }}</p>
-                <p *ngIf="!a.rendu">--</p>
+                <p *ngIf="a.dateRendu">{{ a.dateRendu | date:'yyyy/MM/dd' }}</p>
+                <!-- <p *ngIf="!a.rendu">--</p> -->
             </td>
             </ng-container>
 
@@ -118,6 +109,10 @@
                 <p *ngIf="a.rendu" class="mat-icon-color-green">RENDU</p>
                 <p *ngIf="!a.rendu" class="mat-icon-color-red">Non RENDU</p>
             </td>
+            </ng-container>
+            <ng-container matColumnDef="information">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let a" (click)="goFicheAssignement(a.idAssignement )" class="information">Plus d'information</td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

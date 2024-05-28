@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -40,7 +40,7 @@ export class HomepageComponent implements OnInit{
   badgeVisible = false;
   menuItems: { path: string, label: string, icon: string }[] = [];
 
-  constructor(private authService: AuthService,private menuService: MenuService){}
+  constructor(private authService: AuthService,private menuService: MenuService,private router: Router){}
 
   badgeVisibility() {
     this.badgeVisible = true;
@@ -54,6 +54,7 @@ export class HomepageComponent implements OnInit{
   }
   onDeconnecter(){
     localStorage.clear();
-    location.reload();
+    this.authService.setUserRole(Roles.DEFAULT)
+    this.router.navigate(['/login']);
   }
 }

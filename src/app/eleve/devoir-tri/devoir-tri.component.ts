@@ -60,7 +60,7 @@ export class DevoirTriComponent {
   utilisateur : Utilisateur = {};
   asc: string="asc";
   desc:string="desc";
-  limit = 3;
+  limit = 10;
   page: number = 0;
   length: number = 0;
   totalPage: number = 0;
@@ -71,7 +71,7 @@ export class DevoirTriComponent {
   ordreValue: string="";
   etatValue: string="";
 
-  displayedColumns: string[] = ['_id','eleve','nomAssignement', 'matiere','dateRenduEleve','niveau','statut'];
+  displayedColumns: string[] = ['nomAssignement', 'matiere','niveau','deadline','statut','information'];
 
   constructor(
     private matiereService: MatiereService,
@@ -95,9 +95,16 @@ export class DevoirTriComponent {
     this.getDevoirs();
   }
 
+  goFicheAssignement(idAss:any) {
+    this.router.navigate(['/detail-assignement'], { queryParams: { 
+      idEleve: this.utilisateur._id, 
+      idAssignement : idAss
+    } });
+  }
+
   getMatiere() {
     this.matiereService
-      .getAllMatieres()
+      .getAllMatieres(this.niveauValue)
       .subscribe((data: any) => {
         this.listeMatiere = data.data.liste;
         this.loading = false;
@@ -116,6 +123,7 @@ export class DevoirTriComponent {
   onChangeNiveau(value:any){
     this.niveauValue=value;
     this.getDevoirs();
+    this.getMatiere();
   }
 
   onChangeMatiere(value:any){

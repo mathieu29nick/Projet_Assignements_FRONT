@@ -89,6 +89,12 @@
     color: #152E60; 
   }
 
+  .information{
+    cursor: pointer;
+    color: #152E60; 
+    text-decoration: underline;
+  }
+
 
 
   

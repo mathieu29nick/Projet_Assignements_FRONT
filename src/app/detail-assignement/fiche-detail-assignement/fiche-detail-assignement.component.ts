@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { Location } from '@angular/common';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddNoteComponent } from './add-note/add-note.component';
+import { AuthService } from '../../shared/auth.service';
 
 @Component({
   selector: 'app-fiche-detail-assignement',
@@ -45,18 +46,21 @@ export class FicheDetailAssignementComponent {
   idEleve: string = '';
   loading: Boolean = true;
   erreur: string = '';
+  role: string= '';
   constructor(
     private detailAssignementService: DetailAssignementService,
     private route: ActivatedRoute,
     private location: Location,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private authService: AuthService
   ) {}
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.idAss = params['idAssignement'];
       this.idEleve = params['idEleve'];
     });
+    this.role = this.authService.getUserRole();
     this.getDetailAssignementFromService();
   }
 
