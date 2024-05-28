@@ -75,7 +75,7 @@
           <button mat-button matStepperPrevious><<</button>
           <button mat-flat-button (click)="onSubmit()" color="warn">Soumettre</button>
           <br>
-          <mat-error class="exeption">{{error}}</mat-error>
+          <div *ngIf="error" class="div-error"><div class="error">{{error}}</div></div>
         </div>
       </mat-step>
     </mat-stepper>

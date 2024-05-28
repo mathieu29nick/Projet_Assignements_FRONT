@@ -15,11 +15,18 @@
     color: rgb(21, 46, 96) !important;
 }
 
-.error{
-    font-family: Verdana,
-    Geneva,
-    Tahoma,
-    sans-serif !important;
-    margin-bottom: 20px;
+
+.div-error {
+    margin-top: 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .error {
+    font-size: 16px !important;
+    background-color: var(--mat-form-field-error-text-color);
+    color: black;
+    padding:15px 15px 15px 15px;
     text-align: center;
-}
+  }

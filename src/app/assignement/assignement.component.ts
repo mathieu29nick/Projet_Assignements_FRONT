@@ -14,6 +14,8 @@ import { Matiere } from '../professeur/matiere/matiere.model';
 import { MatiereService } from '../shared/matiere.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { AddAssignementComponent } from './add-assignement/add-assignement.component';
 
 
 @Component({
@@ -51,7 +53,8 @@ export class AssignementComponent {
     private assignementService: AssignementService,
     private matiereService: MatiereService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -96,5 +99,17 @@ export class AssignementComponent {
 
   goFicheAssignement(ass: Assignement) {
     this.router.navigate(['/assignement'], { queryParams: { idAssignement: ass._id } });
+  }
+
+  addAssignement(){
+    if(typeof this.idMatiere!=='undefined' && this.idMatiere!=="" && this.idMatiere!==null){
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.data = { matiere: {
+        _id : this.idMatiere
+      } };
+      this.dialog.open(AddAssignementComponent, dialogConfig);
+    }else{
+      this.router.navigate(['/assignement/ajout-assignement'])
+    }
   }
 }

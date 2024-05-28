@@ -4,7 +4,7 @@ export const MenuItems = {
   [Roles.ADMIN]: [
     { path: '/performance', label: 'Performance des élèves' , icon: 'bar_chart'},
     { path: '/professeurs', label: 'Gestion des professeurs' , icon: 'person'},
-    { path: '/eleves', label: 'Gestion des professeurs' , icon: 'person'},
+    { path: '/eleves', label: 'Gestion des étudiants' , icon: 'person'},
     { path: '/assignements', label: 'Liste des assignements' , icon: 'list'},
   ],
   [Roles.PROF]: [

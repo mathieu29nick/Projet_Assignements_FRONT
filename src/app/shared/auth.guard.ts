@@ -13,8 +13,7 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const userRole = this.authService.getUserRole();
     const allowedPages = RolePages[userRole];
-
-    if (allowedPages.includes(state.url)) {
+    if (allowedPages.includes(state.url.split('?')[0])) {
       return true;
     } else {
       this.router.navigate(['/unauthorized']); // Redirige vers une page non autorisée

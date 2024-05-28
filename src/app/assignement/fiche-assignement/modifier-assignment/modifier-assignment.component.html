@@ -62,7 +62,7 @@
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
             
-            <mat-error *ngIf="error" class="error">{{error}}</mat-error>
+            <div *ngIf="error" class="div-error"><div class="error">{{error}}</div></div>
             <br>
             <button mat-raised-button>VALIDER</button>
             </form>

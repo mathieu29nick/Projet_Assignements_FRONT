@@ -8,12 +8,13 @@
     <mat-form-field class="full-width white">
         <mat-label>Matiere</mat-label>
         <mat-select (selectionChange)="onInputChange()" [(value)]="idMatiere" >
+            <mat-option [value]="">Toutes...</mat-option>
             <mat-option *ngFor="let mat of matieres" [value]="mat._id">{{ mat.libelle }}</mat-option>
         </mat-select>
     </mat-form-field>
     
     <div class="btnAjout">
-      <button mat-flat-button color="accent" routerLink="/assignment/ajout">
+      <button mat-flat-button color="accent" (click)="addAssignement()">
         <mat-icon>add</mat-icon>Ajouter nouvel assignement
       </button>
     </div>
@@ -47,7 +48,7 @@
 
       <ng-container matColumnDef="délai">
         <th mat-header-cell *matHeaderCellDef>Delai</th>
-        <td mat-cell *matCellDef="let a">{{ a.dateRendu }}</td>
+        <td mat-cell *matCellDef="let a">{{ a.dateRendu | date:'yyyy/MM/dd' }}</td>
       </ng-container>
   
       <!-- <ng-container matColumnDef="info">
