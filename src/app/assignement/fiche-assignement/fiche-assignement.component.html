@@ -70,13 +70,13 @@
           <mat-list-item>
             <mat-icon matListItemIcon>lock</mat-icon>
             <div matListItemTitle>Statut</div>
-            <div matListItemLine class="list-desc">Devoir déjà validé</div>
+            <div matListItemLine class="list-desc" style="color: green;">Devoir déjà clôturé</div>
           </mat-list-item>
           } @else{
           <mat-list-item>
             <mat-icon matListItemIcon>lock_open</mat-icon>
             <div matListItemTitle>Statut</div>
-            <div matListItemLine class="list-desc">
+            <div matListItemLine class="list-desc" style="color: red;">
               Devoir en cours de traitement
             </div>
           </mat-list-item>
@@ -90,9 +90,9 @@
             <mat-icon>arrow_back</mat-icon>Retour
           </button>
         </div>
-        <div class="btnModif">
-          <button mat-flat-button color="accent" (click)="modifier(assignement)">
-            <mat-icon>edit</mat-icon>Modifier
+        <div class="btnModif" *ngIf="!assignement.statut">
+          <button mat-flat-button color="accent" (click)="achever(assignement)">
+            <mat-icon>lock</mat-icon>Achever/Clôturer
           </button>
         </div>
         <div class="btnList">
@@ -108,6 +108,7 @@
           </ng-template>
         </div>
       </div>
+      <div *ngIf="error" class="div-error"><div class="error">{{error}}</div></div>
     </mat-list>
     }
   </mat-card-content>

@@ -80,4 +80,16 @@ export class ProfesseurService {
         }
       });
     }
+
+    acheverAssignenment(idAss: string | undefined): Promise<any> {
+      return new Promise((resolve, reject) => {
+          this.http.put(api("Professeur/acheveAssignement/"+idAss),{}).toPromise()
+            .then((result: any) => {
+              resolve(result);
+            })
+            .catch((error: any) => {
+              reject(error);
+            });
+      });
+    }
 }
