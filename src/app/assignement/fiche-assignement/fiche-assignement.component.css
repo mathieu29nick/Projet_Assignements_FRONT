@@ -36,3 +36,14 @@
   justify-content: space-between;
   margin-top: 20px;
 }
+
+.btnModif{
+  cursor: pointer;
+  background-color: white;
+  border: none;
+}
+
+.mat-mdc-card-header{
+  justify-content: space-between;
+}
+

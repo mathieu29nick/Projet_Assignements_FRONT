@@ -140,12 +140,12 @@
             <mat-icon>arrow_upward</mat-icon>Rendre le devoir
           </button>
         </div>
-        <div class="btnList" *ngIf="detailAssignement.dateRenduEleve && !detailAssignement.rendu && role === 'prof'">
+        <div class="btnList" *ngIf="detailAssignement.dateRenduEleve && !detailAssignement.rendu && role === 'professeur'">
           <button mat-flat-button style="background-color: darkgreen;color: white;" (click)="validerDevoir()" >
             <mat-icon>check</mat-icon>Confirmer le rendu de devoir
           </button>
         </div>
-        <div class="btnList" *ngIf="detailAssignement.rendu && !detailAssignement.note && role === 'prof'">
+        <div class="btnList" *ngIf="detailAssignement.rendu && !detailAssignement.note && role === 'professeur'">
           <button mat-flat-button color="warn" (click)="ajoutNote(detailAssignement.idAssignement,detailAssignement.idEleve)">
             <mat-icon>star</mat-icon>Noter le devoir
           </button>

@@ -68,7 +68,6 @@ export class ModifierAssignmentComponent {
     this.assignementService.modifierAssignement(this.assignement._id, this.assignement.nomAssignement,this.assignement.description,this.date)
         .then((result: any) => {
           this.error = "";
-          location.reload();
           this.router.navigate(['/assignement'], { queryParams: { idAssignement: this.assignement._id } });
           //this.router.navigate(['/assignement?idAssignement='+this.assignement._id]);
         })
