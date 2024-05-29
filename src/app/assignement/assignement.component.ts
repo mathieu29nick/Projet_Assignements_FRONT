@@ -107,7 +107,8 @@ export class AssignementComponent {
       dialogConfig.data = { matiere: {
         _id : this.idMatiere
       } };
-      this.dialog.open(AddAssignementComponent, dialogConfig);
+      const dialog= this.dialog.open(AddAssignementComponent, dialogConfig);
+      dialog.componentInstance.setDialogRef(dialog);
     }else{
       this.router.navigate(['/assignement/ajout-assignement'])
     }

@@ -18,6 +18,7 @@ import {provideNativeDateAdapter} from '@angular/material/core';
 import {FormBuilder,ReactiveFormsModule} from '@angular/forms';
 import {MatStepperModule} from '@angular/material/stepper';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {MatSnackBar,MatSnackBarHorizontalPosition,MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
 
 
 @Component({
@@ -60,6 +61,8 @@ export class AddAssignementComponent {
   descFormControl: FormControl;
   dateFormControl: FormControl;
 
+  dialogRef !: MatDialogRef<AddAssignementComponent>;
+
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
@@ -74,12 +77,13 @@ export class AddAssignementComponent {
   });
 
   isLinear = false;
-
+  
   constructor(
     private professeurService : ProfesseurService,
     private router: Router,
     private route: ActivatedRoute,
     private _formBuilder: FormBuilder,
+    private notification: MatSnackBar,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.matiereFormControl = new FormControl('', [Validators.required]);
@@ -93,7 +97,6 @@ export class AddAssignementComponent {
   }
 
   ngOnInit(): void {
-    //console.log(this.data.matiere.libelle)
     if(this.data){
       this.isPopUP=true;
     }
@@ -108,6 +111,10 @@ export class AddAssignementComponent {
             console.error("Veuillez-vous reconnecter!");
         }
     }
+  }
+
+  setDialogRef(dialogRef: MatDialogRef<AddAssignementComponent>) {
+    this.dialogRef = dialogRef;
   }
 
   onSubmit() {
@@ -154,8 +161,11 @@ export class AddAssignementComponent {
         this.professeurService.ajoutAssignementMatiere(this.matiere, this.nom,this.description,this.dateRendu)
         .then((result: any) => {
           this.error = "";
-          location.reload();
-          this.router.navigate(['/professeurs']);
+          this.openNotification();
+          if(this.isPopUP){
+            this.dialogRef.close();
+          }
+          this.router.navigate(['/assignements']);
         })
         .catch((error: any) => {
           console.log(error.erro)
@@ -172,5 +182,13 @@ export class AddAssignementComponent {
         this.listeMatiere = data.data;
         this.loading = false;
       });
+  }
+
+  openNotification() {
+    this.notification.open('Assignement ajouté avec succè!', 'Fermer', {
+      horizontalPosition: "center",
+      verticalPosition: "bottom",
+      duration: 3000
+    });
   }
 }
