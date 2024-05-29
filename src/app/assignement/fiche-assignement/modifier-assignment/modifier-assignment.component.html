@@ -64,7 +64,12 @@
             
             <div *ngIf="error" class="div-error"><div class="error">{{error}}</div></div>
             <br>
-            <button mat-raised-button>VALIDER</button>
+            <div class="button-stepper">
+                <button mat-flat-button color="accent" type="button" (click)="goBack()">
+                    <mat-icon>cancel</mat-icon>Annuler
+                </button>
+                <button mat-flat-button color="primary" type="submit"><mat-icon>check</mat-icon>Modifier</button>
+            </div>
             </form>
         }
 

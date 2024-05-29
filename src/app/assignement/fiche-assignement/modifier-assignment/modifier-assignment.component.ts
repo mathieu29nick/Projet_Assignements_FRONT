@@ -13,13 +13,14 @@ import { MatCardModule } from '@angular/material/card';
 import { Input } from '@angular/core';
 import { MatCard } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-modifier-assignment',
   standalone: true,
   providers: [provideNativeDateAdapter()],
   imports: [FormsModule,
-    MatInputModule, MatFormFieldModule, MatButtonModule,CommonModule,MatDatepickerModule,MatCardModule,MatProgressSpinnerModule],
+    MatInputModule, MatFormFieldModule, MatButtonModule,CommonModule,MatDatepickerModule,MatCardModule,MatProgressSpinnerModule,MatIcon,MatIconModule],
   templateUrl: './modifier-assignment.component.html',
   styleUrl: './modifier-assignment.component.css'
 })
@@ -77,4 +78,7 @@ export class ModifierAssignmentComponent {
         });
   }
 
+  goBack(){
+    this.router.navigate(['/assignement'], { queryParams: { idAssignement: this.assignement._id } });
+  }
 }
