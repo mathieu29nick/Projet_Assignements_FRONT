@@ -1,6 +1,10 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title class="login-title">Fiche Assignement</mat-card-title>
+    <mat-card-title class="login-title">Fiche Assignement</mat-card-title><div >
+      <button  (click)="modifier(assignement)" class="btnModif">
+        <mat-icon style="height: 50px; width: 30px; font-size: 30px; margin-right: -10px;color:dimgrey">edit</mat-icon>
+      </button>
+    </div>
   </mat-card-header>
 
   <mat-card-content>
@@ -88,11 +92,6 @@
         <div class="btnList">
           <button mat-flat-button color="accent" (click)="goliste()">
             <mat-icon>arrow_back</mat-icon>Retour
-          </button>
-        </div>
-        <div class="btnModif">
-          <button mat-flat-button color="accent" (click)="modifier(assignement)">
-            <mat-icon>edit</mat-icon>Modifier
           </button>
         </div>
         <div class="btnList">
