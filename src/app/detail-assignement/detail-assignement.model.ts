@@ -11,4 +11,5 @@ export class DetailAssignement {
   dateRendu?: Date;
   idAssignement?: string;
   description?: string;
+  photoeleve?: string;
 }

@@ -44,10 +44,12 @@ export class AddNoteComponent {
   checkValue(event: any) {
     const value = event.target.value;
     if (value > 20) {
+        this.noteValue = "20";
         event.target.value = 20;
     }
     // checker le min value
     if (value < 0) {
+      this.noteValue = "0";
       event.target.value = 0;
     }
   }

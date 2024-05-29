@@ -5,12 +5,13 @@ import { Professeur } from '../professeur/professeur.model';
 import { Observable } from 'rxjs';
 import { Assignement } from '../assignement/assignement.model';
 import { DetailAssignement } from '../detail-assignement/detail-assignement.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DetailAssignementService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router:Router) {}
 
   getOneDetailAssignement = (idAss: string, idEleve: string) => {
     return this.http.get<Assignement>(
@@ -25,9 +26,18 @@ export class DetailAssignementService {
     niveau?: string,
     matiere?: string,
   ) => {
+    let user : any = {};
+    user = localStorage.getItem("utilisateur");
+    if (user) {
+        try {
+            user = JSON.parse(user);
+        } catch (error) {
+          this.router.navigate(['/login']);
+        }
+    }
     const query =
-      '' + (idProf ?
-      '&idProf=' + idProf : '') + (niveau ?
+    '&idProf=' + (idProf ?
+       idProf : user._id) + (niveau ?
       '&idNiveau=' + niveau : '') + (matiere ?
       '&idMatiere=' + matiere : '');
     return this.http.get<Assignement>(
