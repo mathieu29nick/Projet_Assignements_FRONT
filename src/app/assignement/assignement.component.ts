@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Assignement } from './assignement.model';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTable, MatTableModule } from '@angular/material/table';
 import { MatListModule } from '@angular/material/list';
@@ -16,6 +16,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddAssignementComponent } from './add-assignement/add-assignement.component';
+import { AuthService } from '../shared/auth.service';
 
 
 @Component({
@@ -44,20 +45,34 @@ export class AssignementComponent {
   limit: number = 10;
   length: number = 0;
   totalPage: number = 0;
-  displayedColumns: string[] = ['_id', 'libelle', 'matière', 'prof', 'délai'];
+  displayedColumns: string[] = ['_id', 'libelle', 'matière', 'prof', 'délai','modif'];
   idProf: string | undefined = undefined;
   idMatiere: string | undefined = undefined;
   matieres: Matiere[]= [];
+  role: string = "default";
+
 
   constructor(
     private assignementService: AssignementService,
     private matiereService: MatiereService,
     private route: ActivatedRoute,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
+    this.role = this.authService.getUserRole();
+    if(this.authService.getUserRole() === 'professeur'){
+      let user = localStorage.getItem("utilisateur");
+      if (user) {
+          try {
+              this.idProf = JSON.parse(user)._id;
+          } catch (error) {
+            this.router.navigate(['/login']);
+          }
+      } 
+    }
     this.route.queryParams.subscribe((params) => {
       this.idProf = params['idProf'] ||  this.idProf;
       this.idMatiere = params['idMatiere'] || this.idMatiere;
@@ -107,6 +122,7 @@ export class AssignementComponent {
       dialogConfig.data = { matiere: {
         _id : this.idMatiere
       } };
+      dialogConfig.width='800px';
       const dialog= this.dialog.open(AddAssignementComponent, dialogConfig);
       dialog.componentInstance.setDialogRef(dialog);
     }else{

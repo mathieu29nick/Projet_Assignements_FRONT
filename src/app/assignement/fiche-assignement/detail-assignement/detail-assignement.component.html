@@ -25,10 +25,15 @@
                   <th mat-header-cell *matHeaderCellDef>Status (Rendu/Non Rendu)</th>
                   <td mat-cell *matCellDef="let element">
                     <ng-container *ngIf="element.rendu; else nonRendu">
-                        Rendu <mat-icon style="color: green;">check</mat-icon>
+                      <div style="display: inline-flex;">Rendu <mat-icon style="color: green;">check</mat-icon></div>
                       </ng-container>
                       <ng-template #nonRendu>
-                        Non rendu <mat-icon style="color: red;">hourglass_empty</mat-icon>
+                        <ng-container *ngIf="!element.rendu && element.dateRenduEleve; else pasRendu">
+                          <div style="display: inline-flex;"> En cours de validation <mat-icon style="color: yellow;">hourglass_empty</mat-icon>  </div>
+                        </ng-container>
+                        <ng-template #pasRendu>
+                          <div style="display: inline-flex;">Non rendu <mat-icon style="color: red;">close</mat-icon></div>
+                        </ng-template>
                       </ng-template>
                   </td>
                 </ng-container>
