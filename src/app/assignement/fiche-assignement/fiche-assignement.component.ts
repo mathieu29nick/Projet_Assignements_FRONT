@@ -13,6 +13,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DetailAssignementComponent } from './detail-assignement/detail-assignement.component';
 import { DetailAssignement } from '../../detail-assignement/detail-assignement.model';
+import { ProfesseurService } from '../../shared/professeur.service';
 
 @Component({
   selector: 'app-fiche-assignement',
@@ -43,11 +44,13 @@ export class FicheAssignementComponent {
   idAss: string = '';
   loading: Boolean = true;
   voir=false;
+  error: string = "";
 
   constructor(
     private assignementService: AssignementService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private professeurService : ProfesseurService
   ) {}
 
   ngOnInit() {
@@ -79,6 +82,19 @@ export class FicheAssignementComponent {
     this.router.navigate(['/assignement/modification'], { queryParams: { 
       idAssignement : assignement._id
     } });
+  }
+
+  achever(assignement: Assignement){
+    this.professeurService.acheverAssignenment(assignement._id)
+    .then((result: any) => {
+      this.error = "";
+      this.router.navigate(['/assignement?idAssignement='+assignement._id]);
+      this.getAssignementFromService();
+    })
+    .catch((error: any) => {
+      console.log(error.erro)
+      this.error = error.error ? (error.status==400 ? error.error.message:"") : error.message ? error.message : error;
+    });
   }
 
 }

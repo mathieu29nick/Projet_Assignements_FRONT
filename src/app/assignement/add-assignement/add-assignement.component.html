@@ -14,8 +14,8 @@
             <mat-label>Assignement</mat-label>
             <input matInput placeholder="" name="nom" formControlName="firstCtrl" required (input)="onInputChange()">
           </mat-form-field>
-          <div>
-            <button mat-button matStepperNext>Suivant</button>
+          <div class="button-stepper">
+            <button mat-raised-button color="primary" matStepperNext>Suivant</button>
           </div>
         </form>
       </mat-step>
@@ -26,9 +26,9 @@
             <mat-label>Description</mat-label>
             <input matInput name="description" formControlName="secondCtrl" placeholder="" (input)="onInputChange()" required>
           </mat-form-field>
-          <div>
-            <button mat-button matStepperPrevious>Précédent</button>
-            <button mat-button matStepperNext>Suivant</button>
+          <div class="button-stepper">
+            <button mat-raised-button color="primary" matStepperPrevious>Précédent</button>
+            <button mat-raised-button color="primary" matStepperNext>Suivant</button>
           </div>
         </form>
       </mat-step>
@@ -48,9 +48,9 @@
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
-          <div>
-            <button mat-button matStepperPrevious>Précédent</button>
-          <button mat-button matStepperNext>Suivant</button>
+          <div class="button-stepper">
+            <button mat-raised-button color="primary" matStepperPrevious>Précédent</button>
+          <button mat-raised-button color="primary" matStepperNext>Suivant</button>
           </div>
         </form>
       </mat-step>
@@ -63,17 +63,17 @@
               <mat-option *ngFor="let matiere of listeMatiere" [value]="matiere._id">{{ matiere.libelle }}</mat-option>
             </mat-select>
           </mat-form-field>
-          <div>
-            <button mat-button matStepperPrevious>Précédent</button>
-            <button mat-button matStepperNext>Suivant</button>
+          <div class="button-stepper">
+            <button mat-raised-button color="primary" matStepperPrevious>Précédent</button>
+            <button mat-raised-button color="primary" matStepperNext>Suivant</button>
           </div>
         </form>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Terminé</ng-template>
-        <p>Veuillez clôturer votre ajout!</p>
-        <div>
-          <button mat-button matStepperPrevious>Précédent</button>
+        <p></p>
+        <div class="button-stepper">
+          <button mat-raised-button color="primary" matStepperPrevious>Précédent</button>
           <button mat-flat-button (click)="onSubmit()" color="warn">Soumettre</button>
           <br>
           <div *ngIf="error" class="div-error"><div class="error">{{error}}</div></div>
