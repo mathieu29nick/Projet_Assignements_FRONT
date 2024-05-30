@@ -18,12 +18,13 @@ export class EleveService {
       return this.http.get<Eleve[]>(api("Eleve/"));
     }
 
-    getPerformance = (idEleve: String|undefined, idMatiere: String,idNiveau:String,order:String) => {
+    getPerformance = (idEleve: String|undefined, idMatiere: String,idNiveau:String,idProf: String|undefined,order:String) => {
         idEleve = idEleve ?? "";
         idMatiere = idMatiere ?? "";
         idNiveau = idNiveau ?? "";
         order=order ?? "";
-        let req= "Eleve/performance?idEleve="+idEleve+"&idMatiere="+idMatiere+"&idNiveau="+idNiveau+"&order="+order;
+        idProf = idProf ?? "";
+        let req= "Eleve/performance?idEleve="+idEleve+"&idMatiere="+idMatiere+"&idNiveau="+idNiveau+"&idProf="+idProf+"&order="+order;
         return this.http.get<Performance[]>(api(req));
     }
     

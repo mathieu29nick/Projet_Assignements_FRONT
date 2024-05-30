@@ -138,7 +138,7 @@ export class PerformanceComponent {
 
   getPerformance() {
     this.eleveService
-      .getPerformance(this.eleveValue,this.matiereValue,this.niveauValue,this.ordreValue)
+      .getPerformance(this.eleveValue,this.matiereValue,this.niveauValue,this.idProf,this.ordreValue)
       .subscribe((data: any) => {
         this.performance = data.data;
         this.loading = false;
