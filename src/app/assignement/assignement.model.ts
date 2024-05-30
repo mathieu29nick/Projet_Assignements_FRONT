@@ -8,5 +8,7 @@ export class Assignement {
     prof?: string;
     matiere?:string;
     niveau?:string;
+    photoProf?:string;
+    photoMatiere?:string;
 }
   

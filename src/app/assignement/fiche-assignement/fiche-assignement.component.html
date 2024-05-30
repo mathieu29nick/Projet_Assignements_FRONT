@@ -1,8 +1,9 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title class="login-title">Fiche Assignement</mat-card-title><div >
-      <button  (click)="modifier(assignement)" class="btnModif">
-        <mat-icon style="height: 50px; width: 30px; font-size: 30px; margin-right: -10px;color:dimgrey">edit</mat-icon>
+    <mat-card-title class="login-title">Fiche Assignement</mat-card-title>
+    <div>
+      <button (click)="modifier(assignement)" class="btnModif">
+        <mat-icon class="edit-icon">edit</mat-icon>
       </button>
     </div>
   </mat-card-header>
@@ -13,6 +14,24 @@
       <mat-spinner></mat-spinner>
     </div>
     } @else {
+      <div class="images-container">
+        <div class="image-wrapper">
+          <img
+            class="image"
+            src="{{ assignement.photoProf ? assignement.photoProf : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRetK3z-l-tvWGrJwlKrM8_7Z8PZJLOGkqD1A&usqp=CAU' }}"
+            alt="{{ assignement.prof }}"
+          />
+          <p class="image-text">{{ assignement.prof }}</p>
+        </div>
+        <div class="image-wrapper">
+          <img
+            class="image"
+            src="{{ assignement.photoMatiere ? assignement.photoMatiere : 'https://cdn-icons-png.flaticon.com/512/2621/2621879.png' }}"
+            alt="{{ assignement.matiere }}"
+          />
+          <p class="image-text">{{ assignement.matiere }}</p>
+        </div>
+      </div>
     <mat-list>
       <div mat-subheader>Information</div>
       <div style="display: flex; flex-wrap: wrap; margin-bottom: 20px">
@@ -56,7 +75,7 @@
             <mat-icon matListItemIcon>calendar_today</mat-icon>
             <div matListItemTitle>Délai</div>
             <div matListItemLine class="list-desc">
-              {{ assignement.dateRendu | date:'yyyy/MM/dd' }}
+              {{ assignement.dateRendu | date : "yyyy/MM/dd" }}
             </div>
           </mat-list-item>
         </div>
@@ -74,13 +93,15 @@
           <mat-list-item>
             <mat-icon matListItemIcon>lock</mat-icon>
             <div matListItemTitle>Statut</div>
-            <div matListItemLine class="list-desc" style="color: green;">Devoir déjà clôturé</div>
+            <div matListItemLine class="list-desc" style="color: green">
+              Devoir déjà clôturé
+            </div>
           </mat-list-item>
           } @else{
           <mat-list-item>
             <mat-icon matListItemIcon>lock_open</mat-icon>
             <div matListItemTitle>Statut</div>
-            <div matListItemLine class="list-desc" style="color: red;">
+            <div matListItemLine class="list-desc" style="color: red">
               Devoir en cours de traitement
             </div>
           </mat-list-item>
@@ -90,10 +111,21 @@
       <mat-divider></mat-divider>
       <div class="div-action">
         <div class="btnList">
-          <button mat-raised-button style="background-color: rgb(21, 46, 96);color:white" (click)="goliste()">
+          <button
+            mat-raised-button
+            style="background-color: rgb(21, 46, 96); color: white"
+            (click)="goliste()"
+          >
             <mat-icon>arrow_back</mat-icon>Retour
           </button>
         </div>
+        @if(role === 'etudiant'){
+          <div class="btnModif" >
+            <button mat-flat-button color="accent" (click)="voirMonDevoir(assignement._id)">
+              Voir mon devoir<mat-icon>arrow_forward</mat-icon>
+            </button>
+          </div>
+        }@else{
         <div class="btnModif" *ngIf="!assignement.statut">
           <button mat-flat-button color="accent" (click)="achever(assignement)">
             <mat-icon>lock</mat-icon>Achever/Clôturer
@@ -102,22 +134,31 @@
         <div class="btnList">
           <ng-container *ngIf="!voir; else nonVoir">
             <button mat-flat-button color="accent" (click)="isAfficher()">
-              <mat-icon>remove_red_eye</mat-icon>Afficher les assignements des élèves
+              <mat-icon>remove_red_eye</mat-icon>Afficher les assignements des
+              élèves
             </button>
           </ng-container>
           <ng-template #nonVoir>
             <button mat-flat-button color="warn" (click)="isAfficher()">
-              <mat-icon>visibility_off</mat-icon>Ne pas afficher les assignements des élèves
+              <mat-icon>visibility_off</mat-icon>Ne pas afficher les
+              assignements des élèves
             </button>
           </ng-template>
         </div>
+      }
       </div>
-      <div *ngIf="error" class="div-error"><div class="error">{{error}}</div></div>
+      <div *ngIf="error" class="div-error">
+        <div class="error">{{ error }}</div>
+      </div>
     </mat-list>
     }
   </mat-card-content>
 </mat-card>
-<br>
+<br />
 <!--Liste des devoirs des élèves-->
 
-<app-detail-assignement [detailAssignementEleve]="detail" [assignement]="assignement" *ngIf="voir"></app-detail-assignement>
+<app-detail-assignement
+  [detailAssignementEleve]="detail"
+  [assignement]="assignement"
+  *ngIf="voir"
+></app-detail-assignement>

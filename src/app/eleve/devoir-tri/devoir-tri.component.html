@@ -78,11 +78,11 @@
             class="mat-elevation-z8 demo-table"
         >
            
-
+      
 
             <ng-container matColumnDef="nomAssignement">
             <th mat-header-cell *matHeaderCellDef>Libellé</th>
-            <td mat-cell *matCellDef="let a"><strong class="mat-icon-color-blue">{{ a.assignement }}</strong></td>
+            <td mat-cell *matCellDef="let a" class="information" (click)="goAssignement(a.idAssignement )">{{ a.assignement }}</td>
             </ng-container>
 
             <ng-container matColumnDef="matiere">

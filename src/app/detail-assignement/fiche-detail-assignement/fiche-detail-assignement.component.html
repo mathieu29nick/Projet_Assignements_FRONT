@@ -15,9 +15,16 @@
       <mat-spinner></mat-spinner>
     </div>
     } @else {
-    <mat-list style="display:flex;flex-direction: column">
-      <img style="margin-left: 20px;" src="{{detailAssignement.photoeleve?detailAssignement.photoeleve:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRetK3z-l-tvWGrJwlKrM8_7Z8PZJLOGkqD1A&usqp=CAU'}}" width="100" alt="{{detailAssignement.eleve}}">
-    </mat-list>
+      <div class="images-container">
+        <div class="image-wrapper">
+          <img
+            class="image"
+            src="{{ detailAssignement.photoeleve ? detailAssignement.photoeleve : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRetK3z-l-tvWGrJwlKrM8_7Z8PZJLOGkqD1A&usqp=CAU' }}"
+            alt="{{ detailAssignement.eleve }}"
+          />
+          <p class="image-text">{{ detailAssignement.eleve }}</p>
+        </div>
+      </div>
     <mat-list>
       <div mat-subheader>Information</div>
       @if(role === 'etudiant') {

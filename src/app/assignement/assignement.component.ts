@@ -116,6 +116,12 @@ export class AssignementComponent {
     this.router.navigate(['/assignement'], { queryParams: { idAssignement: ass._id } });
   }
 
+  goModifAssignement(ass: Assignement) {
+    this.router.navigate(['/assignement/modification'], { queryParams: { 
+      idAssignement : ass._id
+    } });
+  }
+
   addAssignement(){
     if(typeof this.idMatiere!=='undefined' && this.idMatiere!=="" && this.idMatiere!==null){
       const dialogConfig = new MatDialogConfig();
