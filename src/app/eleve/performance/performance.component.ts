@@ -72,6 +72,7 @@ export class PerformanceComponent {
   /* Toggle */
   isTB = false;
 
+  idProf: string | undefined ="";
   /* Tableau de bord */
   displayedColumns: string[] = ['_id','moyenne'];
 
@@ -97,6 +98,10 @@ export class PerformanceComponent {
     if(this.role === 'etudiant'){
       this.eleveValue = this.utilisateur._id ?? this.utilisateur._id ;
     }
+    if(this.role==='professeur'){
+      this.idProf = this.utilisateur._id ?? this.utilisateur._id;
+      console.log('idP',this.idProf);
+    }
     this.getMatiere();
     this.getNiveau();
     this.getEleve();
@@ -106,7 +111,7 @@ export class PerformanceComponent {
 
   getMatiere() {
     this.matiereService
-      .getAllMatieres(this.niveauValue)
+      .getAllMatieres(this.niveauValue,this.idProf)
       .subscribe((data: any) => {
         this.listeMatiere = data.data.liste;
         this.loading = false;

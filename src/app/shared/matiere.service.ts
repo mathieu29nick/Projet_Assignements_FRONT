@@ -13,11 +13,15 @@ export class MatiereService {
         return this.http.get<Matiere[]>(api("Professeur/matieres"+ (idProf ? "?idProf="+idProf : "")));
     }
 
-    getAllMatieres = (niveau?: string) => {
+    getAllMatieres = (niveau?: string,idProf?: string) => {
       let niv = "";
+      let prof="";
       if(niveau){
         niv = "&niveau="+niveau;
       }
-      return this.http.get<Matiere[]>(api("Professeur/allmatieres?page=0&pageNumber=60"+niv));
+      if(idProf){
+        prof= "&idProf="+idProf;
+      }
+      return this.http.get<Matiere[]>(api("Professeur/allmatieres?page=0&pageNumber=60"+niv+prof));
   }
 }
