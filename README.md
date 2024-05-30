@@ -13,7 +13,7 @@ Etapes à suivre pour lancer le projet en local :
 2. Ouvrer un terminal et installer les dependances avec la commande `npm i` ou `npm install`
 3. Dirigez-vous dans le répertoire `src\app\shared\api.ts`
 4. Choisissez le 1er url (déployé) et la 2ème url pour le local (Commenté celle que vous ne voulez pas utilisé)
-5. Si vous avez choisi d'utiliser la 2éme url (local), il faudra aussi lancé le projet BACKEND `https://github.com/mathieu29nick/Projet_Assignements_BACK` localement
+5. Si vous avez choisi d'utiliser la 2éme url (local), il faudra aussi lancé le projet BACKEND `https://github.com/mathieu29nick/Projet_Assignements_BACK` dans votre local
 5. Dirigez-vous dans le répertoire `package.json` et remplacer `"start": "node server.js"` par `"start": "ng serve"`
 6. Dans le terminal, utilisé la commande  `npm run start` ou `ng serve` pour démarer l'application
 
@@ -44,7 +44,7 @@ Etapes à suivre pour lancer le projet en local :
     5. Voir la liste des matières de chaque professeurs
     6. Voir la liste des assignations créées par les professeurs et les détails de chaque assignation
     7. Voir en detail pour chaque assignation la liste des élèves assignés à cette assignation
-    8. Voir les perfomances des élèves en forme de (Graph/Tableau de bord) par rapport à ses matières/notes des élèves
+    8. Voir les perfomances des élèves en forme de (Graph/Tableau de bord) par rapport à ses matières/notes des élèves , l admin peut voir les notes par ordre croissant ou décroissant
     9. Voir son propre Profil
 
     ## Mail / Password
@@ -56,7 +56,7 @@ Etapes à suivre pour lancer le projet en local :
     2. Voir la liste des assignations créées par les professeurs et les détails de chaque assignation
     3. Voir en detail pour chaque assignation la liste des élèves assignés à cette assignation
     4. Valider les assignements rendus par les élèves
-    5. Voir les perfomances des élèves en forme de (Graph/Tableau de bord) par rapport à ses matières/notes des élèves
+    5. Voir les perfomances des élèves en forme de (Graph/Tableau de bord) par rapport à ses matières/notes des élèves , ils peuvent voir les notes par ordre croissant ou décroissant
     6. Modifier des assignements
     7. Ajouter les notes/remarques pour les assignements des élèves
     8. Clôturer un assignement
@@ -71,11 +71,11 @@ Etapes à suivre pour lancer le projet en local :
 
 3. Les `Eleves` qui peuvent : 
     ```sh
-    1. Voir la liste des assignements qui leurs sont assignés
+    1. Voir la liste de leurs devoirs avec la possibilité de filtrer par niveau, matière, statut du devoir, et trier par date d échéance (croissante ou décroissante).
     2. Voir la fiche de l assignement
     3. Voir la fiche de leurs devoirs
     4. Rendre leurs assignations si la date d expiration de celles-ci ne sont pas encore dépassées
-    5. Voir ses propres perfomances en forme de (Graph/Tableau de bord) par rapport à ses matières/notes
+    5. Voir ses propres perfomances en forme de (Graph/Tableau de bord) par rapport à ses matières/notes,les peuvent voir ses notes par ordre croissant ou décroissant
     6. Voir leur propre Profil
 
     ## Mail / Password
