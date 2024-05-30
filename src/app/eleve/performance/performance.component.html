@@ -5,6 +5,8 @@
       } @else { 
         <mat-card-title class="login-title">Statistiques des élèves</mat-card-title>
       }
+      
+      <div mat-subheader class="performance-format">Graphe <mat-slide-toggle [(ngModel)]="isTB"  color="warn"> Tableau de bord</mat-slide-toggle></div>
   </mat-card-header>
 
   <mat-card-content>
@@ -17,10 +19,9 @@
       <div class="performance">
         <div class="filtre">
           <mat-list>
-            <div mat-subheader class="performance-format">Graphe <mat-slide-toggle [(ngModel)]="isTB"> Tableau de bord</mat-slide-toggle></div>
-            <div style="display: flex; flex-wrap: wrap; margin-bottom: 20px">
+            <div style="display: flex; justify-content: center;flex-direction: row; margin-bottom: 20px">
               <form>
-                <div style="display: flex; justify-content: space-between;">
+                <div style="display: flex; justify-content: space-between">
                   <mat-form-field class="full-width white">
                     <mat-label>Elève</mat-label>
                     <mat-select [(ngModel)]="eleveValue" name="eleve" (selectionChange)="onChangeEleve($event.value)" [disabled]="role === 'etudiant'">

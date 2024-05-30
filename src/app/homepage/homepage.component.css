@@ -3,9 +3,18 @@
 }
 
 .mat-toolbar.mat-primary{
-  background-color: rgb(21, 46, 96) !important;;
+  background-color: rgb(21, 46, 96) !important;
 }
 
 .mat-drawer-container {
   height: 100%;
 }
+
+.mdc-list-item__content{
+  color: white !important;
+}
+
+.mat-divider {
+  border-top-color: white;
+}
+

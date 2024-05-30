@@ -14,11 +14,12 @@
         </mat-menu>
     </mat-toolbar>
     <mat-drawer-container autosize>
-        <mat-drawer #drawer opened="true" mode="side" position="start">
+        <mat-drawer #drawer opened="true" mode="side" position="start" style="background-color: rgb(21, 46, 96)">
         <mat-nav-list>
+            <mat-divider style="margin-top: -8px;"></mat-divider>
             <div *ngFor="let item of menuItems">
                 <mat-list-item>
-                    <button routerLink="{{item.path}}" mat-button><mat-icon>{{item.icon}}</mat-icon>{{item.label}}</button>
+                    <button style="color:white !important"routerLink="{{item.path}}" mat-button><mat-icon>{{item.icon}}</mat-icon>{{item.label}}</button>
                 </mat-list-item>
                 <mat-divider></mat-divider>
             </div>
