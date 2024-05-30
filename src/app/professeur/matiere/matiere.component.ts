@@ -62,9 +62,9 @@ export class MatiereComponent {
     this.dialog.open(AddMatiereComponent);
   }
 
-  ajoutAssignement(matiere: Matiere) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = { matiere: matiere };
-    this.dialog.open(AddAssignementComponent, dialogConfig);
+  voirAssignement(matiere: Matiere) {
+    this.router.navigate(['/assignements'], { queryParams: { 
+      matiere: matiere._id
+    }  });
   }
 }

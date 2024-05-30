@@ -95,12 +95,14 @@ export class PerformanceComponent {
           this.router.navigate(['/login']);
         }
     }
+    this.route.queryParams.subscribe((params) => {
+      this.eleveValue = params['idEleve'] ||   this.eleveValue;
+    });
     if(this.role === 'etudiant'){
       this.eleveValue = this.utilisateur._id ?? this.utilisateur._id ;
     }
     if(this.role==='professeur'){
       this.idProf = this.utilisateur._id ?? this.utilisateur._id;
-      console.log('idP',this.idProf);
     }
     this.getMatiere();
     this.getNiveau();
@@ -159,11 +161,11 @@ export class PerformanceComponent {
       labels: labels,
       datasets: [
         {
-          label: 'Moyenne',
-          backgroundColor: '#26C9DD',
-          borderColor: '#26C9DD',
-          pointBackgroundColor: '#E91E14',
-          pointBorderColor: '#fff',
+          label: 'Note moyenne',
+          backgroundColor: '#cc0000',
+          borderColor: '#cc0000',
+          pointBackgroundColor: '#152e60',
+          pointBorderColor: 'white',
           data: data,
         }
       ]

@@ -8,14 +8,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { LoginService } from '../shared/login.service';
 import { RouterLink } from '@angular/router';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
 import { Roles } from '../shared/roles';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule,MatButtonModule ,MatCardModule, MatInputModule,FormsModule,MatIconModule,RouterLink,RouterOutlet],
+  imports: [CommonModule,MatButtonModule ,MatCardModule, MatInputModule,FormsModule,MatIconModule,RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -45,14 +45,21 @@ export class LoginComponent {
           localStorage.setItem('type_user', result.type_user);
           localStorage.setItem('utilisateur', JSON.stringify(result.utilisateur));
           localStorage.setItem('token', result.token);
+          // if(this.authService.getUserRole() === Roles.ADMIN){
+          //   this.location.go('/performance');
+          // }else if(this.authService.getUserRole() === Roles.PROF){
+          //   this.location.go('/assignements');
+          // }else{
+          //   this.location.go('/mes-assignements');
+          // }
+          // location.reload();
           if(this.authService.getUserRole() === Roles.ADMIN){
-            this.location.go('/performance');
-          }else if(this.authService.getUserRole() === Roles.PROF){
-            this.location.go('/assignements');
-          }else{
-            this.location.go('/mes-assignements');
-          }
-          location.reload();
+            this.router.navigate(['/performance']);
+           }else if(this.authService.getUserRole() === Roles.PROF){
+            this.router.navigate(['/assignements']);
+           }else{
+            this.router.navigate(['/mes-assignements']);
+           }
         })
         .catch((error: any) => {
           this.error = error.error ? error.error.message : error.message;

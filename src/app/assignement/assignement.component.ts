@@ -75,7 +75,7 @@ export class AssignementComponent {
     }
     this.route.queryParams.subscribe((params) => {
       this.idProf = params['idProf'] ||  this.idProf;
-      this.idMatiere = params['idMatiere'] || this.idMatiere;
+      this.idMatiere = params['matiere'] || this.idMatiere;
     });
     this.getAllMatieres();
     this.getAssignementsFromService();

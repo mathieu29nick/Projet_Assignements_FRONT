@@ -4,14 +4,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Assignement } from '../../assignement.model';
 import { AssignementService } from '../../../shared/assignement.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
-import { Input } from '@angular/core';
-import { MatCard } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 
@@ -34,7 +32,8 @@ export class ModifierAssignmentComponent {
   constructor(
     private assignementService: AssignementService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {}
 
   ngOnInit() {
@@ -79,6 +78,6 @@ export class ModifierAssignmentComponent {
   }
 
   goBack(){
-    this.router.navigate(['/assignement'], { queryParams: { idAssignement: this.assignement._id } });
+    this.location.back();
   }
 }

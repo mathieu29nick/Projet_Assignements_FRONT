@@ -5,11 +5,12 @@ import { EleveService } from '../../shared/eleve.service';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import {MatTableModule } from '@angular/material/table';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
+import { Eleve } from '../../eleve/eleve.model';
 
 @Component({
   selector: 'app-eleve',
@@ -34,10 +35,11 @@ export class EleveComponent {
   loading: Boolean = true;
   length: number = 0;
 
-  displayedColumns: string[] = ['photo','_id', 'nom', 'email'];
+  displayedColumns: string[] = ['photo','_id', 'nom', 'email','performance'];
 
   constructor(
     private eleveService: EleveService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -61,6 +63,10 @@ export class EleveComponent {
     this.page = event.pageIndex;
     this.limit = event.pageSize;
     this.getProfesseursFromService();
+  }
+
+  voirPerf(eleve: Eleve){
+    this.router.navigate(['/performance'], { queryParams: { idEleve: eleve._id} });
   }
 
 }

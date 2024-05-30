@@ -69,7 +69,7 @@
 
   .full-width {
     width: 100%;
-    margin-right: 100px;
+    margin-right: 25px;
   }
 
   .white {
@@ -81,7 +81,15 @@
   .performance-format{
     text-align: center;
     margin-bottom: 50px;
+    margin-top: 0px;
   }
 
+  .mat-mdc-card-header{
+    justify-content: space-between;
+  }
+
+  .mdc-switch.mdc-switch--selected:enabled .mdc-switch__handle::after{
+    background-color:darkred !important;
+  }
   
 
