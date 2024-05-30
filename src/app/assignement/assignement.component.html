@@ -13,7 +13,7 @@
         </mat-select>
     </mat-form-field>
     
-    <div class="btnAjout">
+    <div class="btnAjout" *ngIf="role === 'professeur'">
       <button mat-flat-button color="accent" (click)="addAssignement()">
         <mat-icon>add</mat-icon>Ajouter nouvel assignement
       </button>
@@ -54,7 +54,7 @@
       <ng-container matColumnDef="modif">
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let a">
-          <button *ngIf="role === 'professeur' "mat-button color="primary" (click)="goFicheAssignement(a)"> <mat-icon >edit</mat-icon>Modifier</button>
+          <button *ngIf="role === 'professeur' "mat-button color="primary" (click)="goModifAssignement(a)"> <mat-icon >edit</mat-icon>Modifier</button>
         </td>
       </ng-container>
   

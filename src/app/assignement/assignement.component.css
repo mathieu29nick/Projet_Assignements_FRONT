@@ -36,8 +36,10 @@ table, tr, td {
     height: 100%;
   }
   
-  .mat-mdc-progress-spinner{
+  .mat-mdc-progress-spinner {
     width: 30px !important;
     height: 30px !important;
+    margin-left: 40%;
+    margin-top: 160px;
   }
   

@@ -14,7 +14,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DetailAssignementComponent } from './detail-assignement/detail-assignement.component';
 import { DetailAssignement } from '../../detail-assignement/detail-assignement.model';
 import { ProfesseurService } from '../../shared/professeur.service';
-
+import { Location } from '@angular/common';
+import { AuthService } from '../../shared/auth.service';
+import { Utilisateur } from '../../utilisateur/utilisateur.model';
 @Component({
   selector: 'app-fiche-assignement',
   standalone: true,
@@ -45,19 +47,39 @@ export class FicheAssignementComponent {
   loading: Boolean = true;
   voir=false;
   error: string = "";
+  role:string="default";
+  user : Utilisateur = {};
 
   constructor(
     private assignementService: AssignementService,
     private route: ActivatedRoute,
     private router: Router,
-    private professeurService : ProfesseurService
+    private professeurService : ProfesseurService,
+    private location: Location,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
+    let user = localStorage.getItem("utilisateur");
+    if (user) {
+        try {
+            this.user = JSON.parse(user);
+        } catch (error) {
+          this.router.navigate(['/login']);
+        }
+    }
+    this.role = this.authService.getUserRole();
     this.route.queryParams.subscribe((params) => {
       this.idAss = params['idAssignement'];
     });
     this.getAssignementFromService();
+  }
+
+  voirMonDevoir(ass : any){
+    this.router.navigate(['/detail-assignement'], { queryParams: { 
+      idEleve: this.user._id, 
+      idAssignement : ass
+    } });
   }
 
   getAssignementFromService() {
@@ -75,7 +97,7 @@ export class FicheAssignementComponent {
   }
 
   goliste(){
-    this.router.navigate(['/assignements']);
+    this.location.back();
   }
 
   modifier(assignement: Assignement) {

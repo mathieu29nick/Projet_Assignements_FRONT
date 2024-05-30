@@ -53,3 +53,37 @@
     text-align: center;
   }
   
+  p {
+    margin-left: 20px;
+    margin-top: 5px;
+  }
+  
+  .images-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    margin-bottom: -20px;
+  }
+  
+  .image-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 45%;
+  }
+  
+  .image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+  }
+  
+  .image-text {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+  }

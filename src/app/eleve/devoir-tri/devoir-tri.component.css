@@ -95,6 +95,16 @@
     text-decoration: underline;
   }
 
+  .mat-elevation-z8, .mat-mdc-elevation-specific.mat-elevation-z8{
+    box-shadow: none;
+  }
+
+  .ass-info{
+    color: rgb(73, 135, 234) !important;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
 
 
   

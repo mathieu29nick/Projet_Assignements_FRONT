@@ -95,6 +95,10 @@ export class DevoirTriComponent {
     this.getDevoirs();
   }
 
+  goAssignement(idAss:any) {
+    this.router.navigate(['/assignement'], { queryParams: { idAssignement:idAss } });
+  }
+
   goFicheAssignement(idAss:any) {
     this.router.navigate(['/detail-assignement'], { queryParams: { 
       idEleve: this.utilisateur._id, 
