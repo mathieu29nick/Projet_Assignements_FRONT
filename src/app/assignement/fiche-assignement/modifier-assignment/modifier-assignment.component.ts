@@ -12,6 +12,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
+import {MatSnackBar,MatSnackBarHorizontalPosition,MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-modifier-assignment',
@@ -33,7 +34,8 @@ export class ModifierAssignmentComponent {
     private assignementService: AssignementService,
     private route: ActivatedRoute,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private notification: MatSnackBar,
   ) {}
 
   ngOnInit() {
@@ -68,8 +70,8 @@ export class ModifierAssignmentComponent {
     this.assignementService.modifierAssignement(this.assignement._id, this.assignement.nomAssignement,this.assignement.description,this.date)
         .then((result: any) => {
           this.error = "";
-          this.router.navigate(['/assignement'], { queryParams: { idAssignement: this.assignement._id } });
-          //this.router.navigate(['/assignement?idAssignement='+this.assignement._id]);
+          this.openNotification();
+          this.location.back();
         })
         .catch((error: any) => {
           console.log(error.erro)
@@ -79,5 +81,13 @@ export class ModifierAssignmentComponent {
 
   goBack(){
     this.location.back();
+  }
+
+  openNotification() {
+    this.notification.open('Assignement modifié avec succè!', 'Fermer', {
+      horizontalPosition: "center",
+      verticalPosition: "bottom",
+      duration: 3000
+    });
   }
 }
