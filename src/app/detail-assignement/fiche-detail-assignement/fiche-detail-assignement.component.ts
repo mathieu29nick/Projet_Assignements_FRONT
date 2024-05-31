@@ -92,6 +92,13 @@ export class FicheDetailAssignementComponent {
     this.detailAssignementService.validerOneDetailAssignement(this.detailAssignement.idAssignement,this.detailAssignement.idEleve).then((result: any) => {
       this.getDetailAssignementFromService();
       this.loading = false;
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.data={ assignement : this.detailAssignement.idAssignement,eleve:this.detailAssignement.idEleve}
+      const dialog = this.dialog.open(AddNoteComponent,dialogConfig);
+      dialog.componentInstance.setDialogRef(dialog);
+      dialog.afterClosed().subscribe(result => {
+        this.getDetailAssignementFromService();
+      });
     })
     .catch((error: any) => {
       this.erreur = error.error ? (error.status == 400 ? error.error.message : '') : error.message;
@@ -106,6 +113,10 @@ export class FicheDetailAssignementComponent {
   ajoutNote(idAss : string|undefined,idEleve : string|undefined) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data={ assignement : idAss,eleve:idEleve}
-    this.dialog.open(AddNoteComponent,dialogConfig);
+    const dialog = this.dialog.open(AddNoteComponent,dialogConfig);
+    dialog.componentInstance.setDialogRef(dialog);
+    dialog.afterClosed().subscribe(result => {
+      this.getDetailAssignementFromService();
+    });
   }
 }
