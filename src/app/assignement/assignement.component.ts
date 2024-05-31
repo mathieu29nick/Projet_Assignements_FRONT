@@ -131,6 +131,9 @@ export class AssignementComponent {
       dialogConfig.width='800px';
       const dialog= this.dialog.open(AddAssignementComponent, dialogConfig);
       dialog.componentInstance.setDialogRef(dialog);
+      dialog.afterClosed().subscribe(result => {
+        this.getAssignementsFromService();
+      });
     }else{
       this.router.navigate(['/assignement/ajout-assignement'])
     }

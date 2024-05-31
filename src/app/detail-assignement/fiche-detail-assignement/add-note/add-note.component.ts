@@ -34,6 +34,7 @@ export class AddNoteComponent {
   remarqueValue = '';
   noteValue = '';
   error:string = '';
+  dialogRef !: MatDialogRef<AddNoteComponent>;
 
   constructor(
     private professeurService: ProfesseurService,
@@ -64,13 +65,17 @@ export class AddNoteComponent {
     this.professeurService.ajoutNote(this.data.assignement,this.data.eleve,this.noteValue,this.remarqueValue)
       .then((result: any) => {
         this.error = "";
-        location.reload();
-        this.router.navigate(['/detail-assignement?idEleve='+this.data.eleve+'&idAssignement='+this.data.assignement]);
+        this.dialogRef.close();
       })
       .catch((error: any) => {
         console.log(error.erro)
         this.error = error.error ? (error.status==400 ? error.error.message:"") : error.message ? error.message : error;
       });
   }
+
+  setDialogRef(dialogRef: MatDialogRef<AddNoteComponent>) {
+    this.dialogRef = dialogRef;
+  }
+
 
 }

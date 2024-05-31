@@ -92,4 +92,21 @@ export class ProfesseurService {
             });
       });
     }
+
+    editProf(id:string,nom:string,email:string,mdp:string){
+      return new Promise((resolve, reject) => {
+        this.http.put(api("Professeur/"+id),
+        {
+          nom: nom,
+          email: email,
+          mdp: mdp,
+        }).toPromise()
+          .then((result: any) => {
+            resolve(result);
+          })
+          .catch((error: any) => {
+            reject(error);
+          });
+    });
+    }
 }

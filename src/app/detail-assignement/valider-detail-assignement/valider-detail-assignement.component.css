@@ -21,4 +21,8 @@ margin-top: 160px;
 
 .mdc-list-group__subheader{
     font-weight: bold;
+    background-color: darkred;
+    padding: 10px;
+    color: white;
+    text-align: center;
 }
