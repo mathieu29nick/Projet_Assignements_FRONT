@@ -14,6 +14,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import { AuthService } from '../shared/auth.service';
 import { Roles } from '../shared/roles';
 import { MenuService } from '../shared/menu.service';
+import { Utilisateur } from '../utilisateur/utilisateur.model';
 
 @Component({
   selector: 'app-homepage',
@@ -38,6 +39,7 @@ import { MenuService } from '../shared/menu.service';
 export class HomepageComponent implements OnInit{
   isConnecter = true;
   badgeVisible = false;
+  utilisateur: Utilisateur = {};
   menuItems: { path: string, label: string, icon: string }[] = [];
 
   constructor(private authService: AuthService,private menuService: MenuService,private router: Router){}
@@ -50,6 +52,14 @@ export class HomepageComponent implements OnInit{
     if(this.authService.getUserRole() === Roles.DEFAULT){
       this.isConnecter=false
     }
+    let user = localStorage.getItem("utilisateur");
+        if (user) {
+            try {
+                this.utilisateur = JSON.parse(user);
+            } catch (error) {
+              this.router.navigate(['/login']);
+            }
+        }
     this.menuItems = this.menuService.getMenuItems();
   }
   onDeconnecter(){

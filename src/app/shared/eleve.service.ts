@@ -36,6 +36,25 @@ export class EleveService {
       return this.http.post<Utilisateur>(api("Eleve"), eleve);
     }
 
+    editEleve(id:string,nom:string,prenom:string,email:string,mdp:string,photo:string){
+      return new Promise((resolve, reject) => {
+        this.http.put(api("Eleve/"+id),
+        {
+          nom: nom,
+          prenom: prenom,
+          email: email,
+          mdp: mdp,
+          photo: photo
+        }).toPromise()
+          .then((result: any) => {
+            resolve(result);
+          })
+          .catch((error: any) => {
+            reject(error);
+          });
+    });
+    }
+
     getALLDevoirOneEleve = (idEleve: String|undefined, idMatiere: String,idNiveau:String,order:String,etat:string,pageNumber: Number, page: Number) => {
       idEleve = idEleve ?? "";
       idMatiere = idMatiere ?? "";

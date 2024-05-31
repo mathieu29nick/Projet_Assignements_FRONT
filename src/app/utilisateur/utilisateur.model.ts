@@ -4,5 +4,6 @@ export class Utilisateur {
     prenom?: String;
     email?: string;
     photo?: string;
+    mdp?:string;
   }
   
